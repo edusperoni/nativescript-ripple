@@ -128,14 +128,14 @@ export class Ripple extends ContentView {
 
     public _addChildFromBuilder(name: string, value: any) {
         // Copy inheirtable style property values
-        var originalColor = value.style.color || null;
+        //var originalColor = value.style.color || null;
 
         if (value instanceof View) {
             this.content = value;
         }
 
         // Reset inheritable style property values as we do not want those to be inherited
-        value.style.color = originalColor;
+        //value.style.color = originalColor;
     }
 
 

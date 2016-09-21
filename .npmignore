@@ -1,4 +1,6 @@
 demo/
-screens/
 *.png
 *.log
+*.map
+*.ts
+!*.d.ts

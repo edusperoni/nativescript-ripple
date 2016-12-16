@@ -6,7 +6,8 @@
 	"typings:": "ripple.d.ts",
 	"nativescript": {
 		"platforms": {
-			"android": "2.0.0"
+			"android": "2.4.0",
+			"ios": "2.4.0"
 		}
 	},
 	"scripts": {
@@ -44,6 +45,6 @@
 	"homepage": "https://github.com/bradmartin/nativescript-ripple",
 	"readmeFilename": "README.md",
 	"devDependencies": {
-		"typescript": "^1.8.10"
+		"typescript": "^2.0.10"
 	}
 }

@@ -3,11 +3,10 @@
 * https://twitter.com/BradWayneMartin
 * https://github.com/bradmartin
 * http://bradmartin.net
-* Open Source Lib : https://github.com/balysv/material-ripple
+* Open Source Lib for Android : https://github.com/balysv/material-ripple
 *************************************************************************************/
 
 import * as common from './ripple-common';
-
 import { Color } from "color";
 
 declare var android: any;

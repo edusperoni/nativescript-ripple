@@ -1,7 +1,7 @@
 <Page 
   xmlns="http://schemas.nativescript.org/tns.xsd" 
   xmlns:RL="nativescript-ripple" loaded="pageLoaded">
-  <ActionBar title="Ripples for Every Android" backgroundColor="#3489db" color="#fff" />
+  <ActionBar title="Ripples for Every One" backgroundColor="#3489db" color="#fff" />
   <ScrollView>
     <StackLayout>
 

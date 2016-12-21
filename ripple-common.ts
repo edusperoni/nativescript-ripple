@@ -3,7 +3,6 @@
 * https://twitter.com/BradWayneMartin
 * https://github.com/bradmartin
 * http://bradmartin.net
-* Open Source Lib : https://github.com/balysv/material-ripple
 *************************************************************************************/
 
 import { DependencyObservable, PropertyChangeData, Property, PropertyMetadataSettings } from "ui/core/dependency-observable";

@@ -59,3 +59,6 @@ From your command prompt/termial go to your app's root folder and execute:
 
 ## Attributes
 **rippleColor : string** *optional* - sets the ripple color.
+
+### Contributors
+- Morten Sjøgren @ https://github.com/m-abs **Thanks for iOS support**

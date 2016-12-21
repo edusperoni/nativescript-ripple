@@ -3,4 +3,11 @@ demo/
 *.log
 *.map
 *.ts
-!*.d.ts
+.vs
+.vs/
+screens/
+*.png
+!index.d.ts
+*.map
+tsconfig.json
+*.log

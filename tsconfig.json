@@ -9,7 +9,9 @@
     },
     "files": [
         "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
-        "ripple.android.ts"
+        "ripple.android.ts",
+        "ripple.ios.ts",
+        "ripple-common.ts"
     ],
     "compileOnSave": false
 }

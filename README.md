@@ -56,9 +56,20 @@ From your command prompt/termial go to your app's root folder and execute:
 </Page>
 ```
 
-
 ## Attributes
 **rippleColor : string** *optional* - sets the ripple color.
+
+## Nativescript + Angular
+In the `main.ts` file, add those lines in order to use the ripple effect :
+
+```
+import {registerElement} from "nativescript-angular/element-registry";
+
+registerElement("Ripple", () => require("nativescript-ripple").Ripple);
+```
+
+Please note that on Android, you can have multiple chlidren under a `<Ripple>` view, but with Ios, the `<Ripple>` view **must** have only one child element.
+
 
 ### Contributors
 - Morten Sjøgren @ https://github.com/m-abs **Thanks for iOS support**

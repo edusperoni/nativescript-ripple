@@ -17,5 +17,10 @@ export class Ripple extends ContentView {
     * Gets or sets the ripple color.
     */
     rippleColor: string;
+    
+    /**
+     * disables the ripple effect on iOS.
+     */
+    iosDisabled: string;
 
 }

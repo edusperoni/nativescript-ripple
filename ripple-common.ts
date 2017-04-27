@@ -21,6 +21,12 @@ const rippleColorProperty = new Property(
     new PropertyMetadata("", AffectsLayout)
 );
 
+const iosDisabledProperty = new Property(
+    "iosDisabled",
+    "Ripple",
+    new PropertyMetadata("", AffectsLayout)
+);
+
 const rippleAlphaProperty = new Property(
     "rippleAlpha",
     "Ripple",
@@ -41,6 +47,7 @@ const fadeDurationProperty = new Property(
 
 export abstract class Ripple extends ContentView {
     public static rippleColorProperty = rippleColorProperty;
+    public static iosDisabledProperty = iosDisabledProperty;
     public static rippleAlphaProperty = rippleAlphaProperty;
     public static rippleDurationProperty = rippleDurationProperty;
     public static fadeDurationProperty = fadeDurationProperty;
@@ -51,6 +58,14 @@ export abstract class Ripple extends ContentView {
 
     set rippleColor(value: string) {
         this._setValue(Ripple.rippleColorProperty, value);
+    }
+
+    get iosDisabled(): string {
+        return this._getValue(Ripple.iosDisabledProperty);
+    }
+
+    set iosDisabled(value: string) {
+        this._setValue(Ripple.iosDisabledProperty, value);
     }
 
     get rippleAlpha(): any {

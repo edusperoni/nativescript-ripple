@@ -58,6 +58,7 @@ From your command prompt/termial go to your app's root folder and execute:
 
 ## Attributes
 **rippleColor : string** *optional* - sets the ripple color.
+**iosDisabled : string** *optional* - disables the ripple effect on iOS. Possible values are: "true" or "1". Simply omit this attribute if you want the ripple effect on iOS.
 
 ## Nativescript + Angular
 In the `main.ts` file, add those lines in order to use the ripple effect :

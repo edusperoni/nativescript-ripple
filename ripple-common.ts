@@ -8,7 +8,6 @@
 import { DependencyObservable, PropertyChangeData, Property, PropertyMetadataSettings } from "tns-core-modules/ui/core/dependency-observable";
 import { ContentView } from "tns-core-modules/ui/content-view";
 import { View } from "tns-core-modules/ui/core/view";
-import { PropertyMetadata } from "tns-core-modules/ui/core/proxy";
 import { Color } from "tns-core-modules/color";
 import {isAndroid} from "tns-core-modules/platform";
 

@@ -13,5 +13,5 @@
         "ripple.ios.ts",
         "ripple-common.ts"
     ],
-    "compileOnSave": false
+    "compileOnSave": true
 }

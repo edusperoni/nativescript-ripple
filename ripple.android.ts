@@ -7,7 +7,7 @@
 *************************************************************************************/
 
 import * as common from './ripple-common';
-import { Color } from "color";
+import { Color } from "tns-core-modules/color";
 
 declare var android: any;
 declare var java: any;
@@ -45,7 +45,7 @@ export class Ripple extends common.Ripple {
         // }
 
         // if (this.rippleDuration) {
-        //     console.log(this.rippleDuration);            
+        //     console.log(this.rippleDuration);
         //     // this._android.setRippleDuration(this.rippleDuration);
         // }
 

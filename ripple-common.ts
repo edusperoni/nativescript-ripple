@@ -5,39 +5,41 @@
 * http://bradmartin.net
 *************************************************************************************/
 
-import { DependencyObservable, PropertyChangeData, Property, PropertyMetadataSettings } from "ui/core/dependency-observable";
-import { ContentView } from "ui/content-view";
-import { View } from "ui/core/view";
-import { PropertyMetadata } from "ui/core/proxy";
-import { Color } from "color";
-import { isAndroid } from "platform";
+import { DependencyObservable, PropertyChangeData, Property, PropertyMetadataSettings } from "tns-core-modules/ui/core/dependency-observable";
+import { ContentView } from "tns-core-modules/ui/content-view";
+import { View } from "tns-core-modules/ui/core/view";
+import { PropertyMetadata } from "tns-core-modules/ui/core/proxy";
+import { Color } from "tns-core-modules/color";
+import {isAndroid} from "tns-core-modules/platform";
 
 // on Android we explicitly set propertySettings to None because android will invalidate its layout (skip unnecessary native call).
 const AffectsLayout = isAndroid ? PropertyMetadataSettings.None : PropertyMetadataSettings.AffectsLayout;
+declare var android, java, com: any;
 
-const rippleColorProperty = new Property(
-    "rippleColor",
-    "Ripple",
-    new PropertyMetadata("", AffectsLayout)
-);
 
-const rippleAlphaProperty = new Property(
-    "rippleAlpha",
-    "Ripple",
-    new PropertyMetadata("", AffectsLayout)
-);
 
-const rippleDurationProperty = new Property(
-    "rippleDuration",
-    "Ripple",
-    new PropertyMetadata("", AffectsLayout)
-);
+export const rippleColorProperty = new Property<Ripple, string>({
+    name: "rippleColor", affectsLayout: true
+});
+rippleColorProperty.register(Ripple);
 
-const fadeDurationProperty = new Property(
-    "fadeDuration",
-    "Ripple",
-    new PropertyMetadata("", AffectsLayout)
-);
+
+export const rippleAlphaProperty = new Property<Ripple, string>({
+    name: "rippleAlpha", affectsLayout: true
+});
+rippleAlphaProperty.register(Ripple);
+
+
+export const rippleDurationProperty = new Property<Ripple, string>({
+    name: "rippleDuration", affectsLayout: true
+});
+rippleDurationProperty.register(Ripple);
+
+
+export const fadeDurationProperty = new Property<Ripple, string>({
+    name: "fadeDuration", affectsLayout: true
+});
+fadeDurationProperty.register(Ripple);
 
 export abstract class Ripple extends ContentView {
     public static rippleColorProperty = rippleColorProperty;

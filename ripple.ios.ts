@@ -6,10 +6,10 @@
 *************************************************************************************/
 
 import * as common from './ripple-common';
-import { View } from "ui/core/view";
-import { Color } from "color";
-import { Button } from 'ui/button';
-import { TouchGestureEventData, GestureTypes } from 'ui/gestures';
+import { View } from "tns-core-modules/ui/core/view";
+import { Color } from "tns-core-modules/color";
+import { Button } from 'tns-core-modules/ui/button';
+import { TouchGestureEventData, GestureTypes } from 'tns-core-modules/ui/gestures';
 
 declare var CGAffineTransformMakeScale: any;
 declare var CGPointMake: any;

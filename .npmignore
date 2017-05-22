@@ -1,4 +1,13 @@
 demo/
+*.png
+*.log
+*.map
+*.ts
+.vs
+.vs/
 screens/
 *.png
+!index.d.ts
+*.map
+tsconfig.json
 *.log

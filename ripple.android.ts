@@ -8,54 +8,52 @@
 
 import * as common from './ripple-common';
 import { Color } from "tns-core-modules/color";
+import {fadeDurationProperty, rippleAlphaProperty, rippleColorProperty, rippleDurationProperty} from "./ripple-common";
 
 declare var android: any;
 declare var java: any;
 declare var com: any;
 
 export class Ripple extends common.Ripple {
-    private _android: any; /*com.balysv.materialripple.MaterialRippleLayout;*/
+    private _android: any = null; /*com.balysv.materialripple.MaterialRippleLayout;*/
     private _androidViewId: number;
 
     get android(): any {
         return this._android;
     }
 
-    get _nativeView(): any {
-        return this._android;
+    [rippleColorProperty.setNative](value: Color) {
+        this.rippleColor = value.hex;
+        this.nativeView.setRippleColor(value.android);
     }
 
-    public _createUI() {
-        this._android = new com.balysv.materialripple.MaterialRippleLayout(this._context);
+    [rippleAlphaProperty.setNative](value: number) {
+        this.nativeView.setRippleAlpha(value);
+    }
 
+    [rippleDurationProperty.setNative](value: number) {
+        this.nativeView.setRippleDuration(value);
+    }
+
+    [fadeDurationProperty.setNative](value: number) {
+        this.nativeView.setRippleFadeDuration(value);
+    }
+
+    public createNativeView() {
+        this._android = new com.balysv.materialripple.MaterialRippleLayout(this._context);
         this._android.setRippleOverlay(true);
 
-        if (!this._androidViewId) {
-            this._androidViewId = android.view.View.generateViewId();
-        }
+        if (!this._androidViewId) this._androidViewId = android.view.View.generateViewId();
         this._android.setId(this._androidViewId);
 
-        if (this.rippleColor) {
-            this._android.setRippleColor(new Color(this.rippleColor).android);
-        }
-
-        // if (this.rippleAlpha) {
-        //     console.log(this.rippleAlpha);
-        //     // this._android.setRippleAlpha(this.rippleAlpha);
-        // }
-
-        // if (this.rippleDuration) {
-        //     console.log(this.rippleDuration);
-        //     // this._android.setRippleDuration(this.rippleDuration);
-        // }
-
-        // if (this.fadeDuration) {
-        //     console.log(this.fadeDuration);
-        //     // this._android.setRippleFadeDuration(this.fadeDuration);
-        // }
+        return this._android;
     }
 
     public performRipple(x: number, y: number) {
         this._android.performRipple();
+    }
+
+    public disposeNativeView() {
+        this._android = undefined;
     }
 }

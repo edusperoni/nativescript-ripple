@@ -10,6 +10,7 @@ import { View } from "tns-core-modules/ui/core/view";
 import { Color } from "tns-core-modules/color";
 import { Button } from 'tns-core-modules/ui/button';
 import { TouchGestureEventData, GestureTypes } from 'tns-core-modules/ui/gestures';
+import {rippleColorProperty} from "./ripple-common";
 
 declare var CGAffineTransformMakeScale: any;
 declare var CGPointMake: any;
@@ -18,6 +19,10 @@ declare var UIView: any;
 declare var UIViewAnimationOptionCurveEaseOut: any;
 
 export class Ripple extends common.Ripple {
+
+    [rippleColorProperty.setNative](value: Color) {
+        this.rippleColor = value.hex;
+    }
 
     performRipple(x: number, y: number) {
         if (!(this.content instanceof View)) {

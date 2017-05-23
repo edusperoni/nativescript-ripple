@@ -1,17 +1,36 @@
 {
     "compilerOptions": {
-        "target": "es5",
         "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
         "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "declaration": false,
+        "noLib": false,
+        "noEmitHelpers": true,
         "experimentalDecorators": true,
-        "sourceMap": true,
-        "noEmitHelpers": true
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "./node_modules/tns-core-modules/*",
+                "./node_modules/*"
+            ]
+        }
     },
     "files": [
         "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
         "ripple.android.ts",
         "ripple.ios.ts",
         "ripple-common.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "platforms"
     ],
     "compileOnSave": true
 }

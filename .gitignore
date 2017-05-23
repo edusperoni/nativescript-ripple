@@ -8,4 +8,6 @@ demo/lib
 demo/platforms
 demo/node_modules
 node_modules
-.idea/*
+.idea
+\.idea/*
+\.idea/deployment.xml

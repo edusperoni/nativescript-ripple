@@ -1,13 +1,13 @@
 {
 	"name": "nativescript-ripple",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "NativeScript plugin to add Material Design ripple effects to any layout.",
 	"main": "ripple",
 	"typings:": "ripple.d.ts",
 	"nativescript": {
 		"platforms": {
-			"android": "2.4.0",
-			"ios": "2.4.0"
+			"android": "3.0.0",
+			"ios": "3.0.0"
 		}
 	},
 	"scripts": {
@@ -35,10 +35,16 @@
 		"name": "Brad Martin",
 		"email": "bradwaynemartin@gmail.com"
 	},
-	"contributors": [{
-		"name": "Morten Sjøgren",
-		"url": "https://github.com/m-abs"
-	}],
+	"contributors": [
+		{
+			"name": "Morten Sjøgren",
+			"url": "https://github.com/m-abs"
+		},
+		{
+			"name": "Jorge Luis Malaquias",
+			"url": "https://github.com/jgraffite"
+		}
+	],
 	"bugs": {
 		"url": "https://github.com/bradmartin/nativescript-ripple/issues"
 	},

@@ -17,7 +17,6 @@ var Ripple = (function (_super) {
         configurable: true
     });
     Ripple.prototype[ripple_common_1.rippleColorProperty.setNative] = function (value) {
-        this.rippleColor = value.hex;
         this.nativeView.setRippleColor(value.android);
     };
     Ripple.prototype[ripple_common_1.rippleAlphaProperty.setNative] = function (value) {

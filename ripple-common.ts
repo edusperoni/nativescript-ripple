@@ -15,7 +15,7 @@ declare var android, java, com: any;
 
 export abstract class Ripple extends ContentView {
 
-    protected rippleColor: string = null;
+    protected rippleColor: Color = null;
 
     public content: any = null;
 

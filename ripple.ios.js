@@ -4,15 +4,11 @@ var common = require("./ripple-common");
 var view_1 = require("tns-core-modules/ui/core/view");
 var color_1 = require("tns-core-modules/color");
 var gestures_1 = require("tns-core-modules/ui/gestures");
-var ripple_common_1 = require("./ripple-common");
 var Ripple = (function (_super) {
     __extends(Ripple, _super);
     function Ripple() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Ripple.prototype[ripple_common_1.rippleColorProperty.setNative] = function (value) {
-        this.rippleColor = value.hex;
-    };
     Ripple.prototype.performRipple = function (x, y) {
         var _this = this;
         if (!(this.content instanceof view_1.View)) {
@@ -31,7 +27,7 @@ var Ripple = (function (_super) {
         UIView.animateWithDurationDelayOptionsAnimationsCompletion(0.6, 0, UIViewAnimationOptionCurveEaseOut, function () {
             ripple.transform = CGAffineTransformMakeScale(scale, scale);
             ripple.alpha = 0.0;
-            ripple.backgroundColor = new color_1.Color(_this.rippleColor || '#cecece').ios;
+            ripple.backgroundColor = new color_1.Color(_this.rippleColor.hex || '#cecece').ios;
         }, function (finished) {
             ripple.removeFromSuperview();
         });

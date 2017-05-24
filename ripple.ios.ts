@@ -20,10 +20,6 @@ declare var UIViewAnimationOptionCurveEaseOut: any;
 
 export class Ripple extends common.Ripple {
 
-    [rippleColorProperty.setNative](value: Color) {
-        this.rippleColor = value.hex;
-    }
-
     performRipple(x: number, y: number) {
         if (!(this.content instanceof View)) {
             return;
@@ -45,7 +41,7 @@ export class Ripple extends common.Ripple {
         UIView.animateWithDurationDelayOptionsAnimationsCompletion(0.6, 0, UIViewAnimationOptionCurveEaseOut, () => {
             ripple.transform = CGAffineTransformMakeScale(scale, scale);
             ripple.alpha = 0.0;
-            ripple.backgroundColor = new Color(this.rippleColor || '#cecece').ios;
+            ripple.backgroundColor = new Color(this.rippleColor.hex || '#cecece').ios;
         }, (finished: boolean) => {
             ripple.removeFromSuperview();
         });

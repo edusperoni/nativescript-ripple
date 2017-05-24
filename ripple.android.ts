@@ -23,7 +23,6 @@ export class Ripple extends common.Ripple {
     }
 
     [rippleColorProperty.setNative](value: Color) {
-        this.rippleColor = value.hex;
         this.nativeView.setRippleColor(value.android);
     }
 

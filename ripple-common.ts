@@ -10,7 +10,6 @@ import { ContentView } from "tns-core-modules/ui/content-view";
 import { View } from "tns-core-modules/ui/core/view";
 import { Color } from "tns-core-modules/color";
 
-
 declare var android, java, com: any;
 
 export abstract class Ripple extends ContentView {

@@ -8,7 +8,7 @@
 
 import * as common from './ripple-common';
 import { Color } from "tns-core-modules/color";
-import {fadeDurationProperty, rippleAlphaProperty, rippleColorProperty, rippleDurationProperty} from "./ripple-common";
+import { fadeDurationProperty, rippleAlphaProperty, rippleColorProperty, rippleDurationProperty } from "./ripple-common";
 
 declare var android: any;
 declare var java: any;

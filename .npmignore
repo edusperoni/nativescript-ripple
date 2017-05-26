@@ -7,7 +7,10 @@ demo/
 .vs/
 screens/
 *.png
-!index.d.ts
+!ripple.d.ts
 *.map
 tsconfig.json
 *.log
+.idea/
+.vscode/
+README.md

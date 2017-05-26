@@ -4,17 +4,22 @@
 # NativeScript-Ripple
 NativeScript plugin to add Material Design ripple effects to any layout.
 
-## Demo
-
-![Demo](./screens/demo.gif)
-
-## Native Library
-[Material Ripple](https://github.com/balysv/material-ripple)
 
 ## Installation
 From your command prompt/termial go to your app's root folder and execute:
 
+#### NativeScript 3.0+
 `tns plugin add nativescript-ripple`
+
+#### NativeScript 2.x 
+`tns plugin add nativescript-ripple@1.1.0`
+
+## Demo
+
+![Demo](./screens/demo.gif)
+
+### Native Android Library
+[Material Ripple](https://github.com/balysv/material-ripple)
 
 ## Usage
 

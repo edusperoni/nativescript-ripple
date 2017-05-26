@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var common = require("./ripple-common");
 var view_1 = require("tns-core-modules/ui/core/view");
 var color_1 = require("tns-core-modules/color");

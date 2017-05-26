@@ -8,9 +8,7 @@
 import * as common from './ripple-common';
 import { View } from "tns-core-modules/ui/core/view";
 import { Color } from "tns-core-modules/color";
-import { Button } from 'tns-core-modules/ui/button';
 import { TouchGestureEventData, GestureTypes } from 'tns-core-modules/ui/gestures';
-import {rippleColorProperty} from "./ripple-common";
 
 declare var CGAffineTransformMakeScale: any;
 declare var CGPointMake: any;

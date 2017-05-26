@@ -6,10 +6,11 @@
 *************************************************************************************/
 
 import * as common from './ripple-common';
-import { View } from "ui/core/view";
-import { Color } from "color";
-import { Button } from 'ui/button';
-import { TouchGestureEventData, GestureTypes } from 'ui/gestures';
+import { View } from "tns-core-modules/ui/core/view";
+import { Color } from "tns-core-modules/color";
+import { Button } from 'tns-core-modules/ui/button';
+import { TouchGestureEventData, GestureTypes } from 'tns-core-modules/ui/gestures';
+import {rippleColorProperty} from "./ripple-common";
 
 declare var CGAffineTransformMakeScale: any;
 declare var CGPointMake: any;
@@ -40,7 +41,7 @@ export class Ripple extends common.Ripple {
         UIView.animateWithDurationDelayOptionsAnimationsCompletion(0.6, 0, UIViewAnimationOptionCurveEaseOut, () => {
             ripple.transform = CGAffineTransformMakeScale(scale, scale);
             ripple.alpha = 0.0;
-            ripple.backgroundColor = new Color(this.rippleColor || '#cecece').ios;
+            ripple.backgroundColor = new Color(this.rippleColor.hex || '#cecece').ios;
         }, (finished: boolean) => {
             ripple.removeFromSuperview();
         });

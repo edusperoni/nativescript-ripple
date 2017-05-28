@@ -19,7 +19,7 @@ declare var UIViewAnimationOptionCurveEaseOut: any;
 export class Ripple extends common.Ripple {
 
     performRipple(x: number, y: number) {
-        if (!(this.content instanceof View)) {
+        if (!(this.content instanceof View) || this.iosDisabled) {
             return;
         }
 

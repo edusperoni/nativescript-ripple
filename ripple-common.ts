@@ -13,40 +13,40 @@ import { Color } from "tns-core-modules/color";
 declare var android, java, com: any;
 
 export abstract class Ripple extends ContentView {
+  protected rippleColor: Color = null;
 
-    protected rippleColor: Color = null;
+  public content: any = null;
 
-    public content: any = null;
-
-    public _addChildFromBuilder(name: string, value: any) {
-        if (value instanceof View) {
-            this.content = value;
-        }
+  public _addChildFromBuilder(name: string, value: any) {
+    if (value instanceof View) {
+      this.content = value;
     }
+  }
 
-    public abstract performRipple(x: number, y: number);
+  public abstract performRipple(x: number, y: number);
 }
 
-
 export const rippleColorProperty = new Property<Ripple, Color>({
-    name: "rippleColor", equalityComparer: Color.equals, valueConverter: (v) => new Color(v)
+  name: "rippleColor",
+  equalityComparer: Color.equals,
+  valueConverter: v => new Color(v)
 });
 rippleColorProperty.register(Ripple);
 
-
 export const rippleAlphaProperty = new Property<Ripple, number>({
-    name: "rippleAlpha", affectsLayout: true
+  name: "rippleAlpha",
+  affectsLayout: true
 });
 rippleAlphaProperty.register(Ripple);
 
-
 export const rippleDurationProperty = new Property<Ripple, number>({
-    name: "rippleDuration", affectsLayout: true
+  name: "rippleDuration",
+  affectsLayout: true
 });
 rippleDurationProperty.register(Ripple);
 
-
 export const fadeDurationProperty = new Property<Ripple, string>({
-    name: "fadeDuration", affectsLayout: true
+  name: "fadeDuration",
+  affectsLayout: true
 });
 fadeDurationProperty.register(Ripple);

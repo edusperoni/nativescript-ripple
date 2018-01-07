@@ -1,5 +1,9 @@
 [![npm](https://img.shields.io/npm/v/nativescript-ripple.svg)](https://www.npmjs.com/package/nativescript-ripple)
 [![npm](https://img.shields.io/npm/dt/nativescript-ripple.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-ripple)
+[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-ripple.svg)](https://github.com/bradmartin/nativescript-ripple/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-ripple.svg)](https://github.com/bradmartin/nativescript-ripple/network)
+[![PayPal Donate](https://img.shields.io/badge/Donate-PayPal-ff4081.svg)](https://www.paypal.me/bradwayne88)
+
 
 # NativeScript-Ripple
 NativeScript plugin to add Material Design ripple effects to any layout.

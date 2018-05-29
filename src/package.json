@@ -1,7 +1,7 @@
 {
     "name": "nativescript-ng-ripple",
-    "version": "1.0.0",
-    "description": "Your awesome NativeScript plugin.",
+    "version": "1.0.1",
+    "description": "Angular directive to enable ripple effects on touch.",
     "main": "ng-ripple",
     "typings": "ng-ripple.d.ts",
     "nativescript": {

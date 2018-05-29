@@ -125,7 +125,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         );
         holdanim.backgroundColor = (this.el.nativeElement.backgroundColor as Color ||
             new Color(this.el.nativeElement.backgroundColor as string || '#400000')).ios;
-        holdanim.alpha = 1.0;
+        holdanim.alpha = 0.0;
         nativeView.insertSubviewAtIndex(holdanim, 0);
         holdanim.center = CGPointMake(size.width / 2.0, size.height / 2.0);
 
@@ -137,7 +137,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
             UIViewAnimationOptionCurveEaseOut,
             () => {
                 // holdanim.transform = CGAffineTransformMakeScale(scale, scale);
-                holdanim.alpha = 0.2;
+                holdanim.alpha = 0.24;
                 // holdanim.backgroundColor = new Color(
                 //     this.rippleColor || '#400000'
                 // ).ios;

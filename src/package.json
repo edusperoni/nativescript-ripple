@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Your awesome NativeScript plugin.",
     "main": "ng-ripple",
-    "typings": "index.d.ts",
+    "typings": "ng-ripple.d.ts",
     "nativescript": {
         "platforms": {
             "android": "4.0.0",

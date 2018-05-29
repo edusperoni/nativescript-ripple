@@ -123,8 +123,9 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         const holdanim = UIView.alloc().initWithFrame(
             CGRectMake(0, 0, size.width, size.height)
         );
-        holdanim.backgroundColor = (this.el.nativeElement.backgroundColor as Color ||
-            new Color(this.el.nativeElement.backgroundColor as string || '#400000')).ios;
+        holdanim.backgroundColor = new Color(
+            this.rippleColor || '#400000'
+        ).ios;
         holdanim.alpha = 0.0;
         nativeView.insertSubviewAtIndex(holdanim, 0);
         holdanim.center = CGPointMake(size.width / 2.0, size.height / 2.0);

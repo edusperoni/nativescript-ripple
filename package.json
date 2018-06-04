@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "NativeScript plugin to add Material Design ripple effects to any layout.",
   "main": "ripple",
-  "typings:": "ripple.d.ts",
+  "typings": "ripple.d.ts",
   "nativescript": {
     "platforms": {
       "android": "3.0.0",

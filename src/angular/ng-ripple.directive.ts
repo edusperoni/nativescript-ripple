@@ -16,6 +16,7 @@ declare var UIViewAnimationOptionCurveEaseOut: any;
 
 @Directive({ selector: '[ripple]' })
 export class NativeRippleDirective implements OnInit, OnChanges {
+    @Input() ripple: string;
     @Input() rippleColor?: string;
     loaded: boolean = false;
     initialized: boolean = false;
@@ -30,6 +31,21 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         this.initialized = true;
     }
     ngOnChanges(changes: SimpleChanges) {
+        if (changes.ripple.currentValue !== changes.ripple.previousValue ||
+            changes.rippleColor.currentValue !== changes.rippleColor.currentValue) {
+            this.applyOrRemoveRipple();
+        }
+    }
+
+    applyOrRemoveRipple() {
+        if (!this.loaded) {
+            return;
+        }
+        if (this.ripple !== "off") {
+            this.applyRipple();
+        } else {
+            this.removeRipple();
+        }
     }
 
     @HostListener('loaded')
@@ -38,7 +54,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         if (!this.initialized) {
             this.ngOnInit();
         }
-        this.applyRipple();
+        this.applyOrRemoveRipple();
     }
 
     @HostListener('unloaded')
@@ -61,6 +77,8 @@ export class NativeRippleDirective implements OnInit, OnChanges {
     removeRipple() {
         if (platform.isIOS) {
             this.removeOnIOS();
+        } else if (platform.isAndroid) {
+            this.removeOnAndroid();
         }
     }
 
@@ -197,6 +215,18 @@ export class NativeRippleDirective implements OnInit, OnChanges {
                     shapeDrawable);
 
                 androidView.setBackground(drawable);
+            }
+        }
+    }
+
+    removeOnAndroid() {
+        if (this.el.nativeElement instanceof View) {
+            const LOLLIPOP = 21;
+            if (android.os.Build.VERSION.SDK_INT >= LOLLIPOP) {
+                const androidView = (<View>this.el.nativeElement).android;
+                if (androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable) {
+                    androidView.setBackground((<any>androidView.getBackground()).getDrawable(0));
+                }
             }
         }
     }

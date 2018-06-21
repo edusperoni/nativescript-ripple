@@ -208,6 +208,9 @@ export class NativeRippleDirective implements OnInit, OnChanges {
                 const r = new android.graphics.drawable.shapes.RoundRectShape(outerRadii, null, null);
                 const shapeDrawable = new android.graphics.drawable.ShapeDrawable(r);
                 shapeDrawable.getPaint().setColor(android.graphics.Color.BLACK);
+                if (androidView.getBackground() == null) { // safe measure. If background is null, turning off and on the screen would make it black
+                    androidView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+                }
                 const drawable = new (<any>android.graphics.drawable).RippleDrawable(
                     android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor(this.rippleColor || '#40000000')),
                     androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable ?

@@ -44,6 +44,10 @@ export class MyModule { }
 <Label text="this is inside the layout!"></Label>
 </StackLayout>
 ```
+
+### Implementation details
+
+On Android, if the view does not have a background, we assign a transparent one. Otherwise, turning the screen off and then on again makes the background the same as the mask color (black).
     
 ## License
 

@@ -25,6 +25,8 @@ export class NativeRippleDirective implements OnInit, OnChanges {
     holding: boolean = false;
     holdAnimation: any;
 
+    private originalNSFn: any;
+
     constructor(private el: ElementRef) { }
 
     ngOnInit() {
@@ -55,12 +57,20 @@ export class NativeRippleDirective implements OnInit, OnChanges {
             this.ngOnInit();
         }
         this.applyOrRemoveRipple();
+        // WARNING: monkey patching {N} functions ahead
+        this.originalNSFn = this.el.nativeElement._redrawNativeBackground;
+        this.el.nativeElement._redrawNativeBackground = (val) => {
+            this.originalNSFn(val);
+            this.applyOrRemoveRipple();
+        };
     }
 
     @HostListener('unloaded')
     onUnloaded() {
         this.loaded = false;
         this.removeRipple();
+        // remove monkey patch
+        this.el.nativeElement._redrawNativeBackground = this.originalNSFn;
     }
     getInDP(radius: Length): number {
         return Length.toDevicePixels(radius, 0);

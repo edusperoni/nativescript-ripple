@@ -58,11 +58,13 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         }
         this.applyOrRemoveRipple();
         // WARNING: monkey patching {N} functions ahead
-        this.originalNSFn = this.el.nativeElement._redrawNativeBackground;
-        this.el.nativeElement._redrawNativeBackground = (val) => {
-            this.originalNSFn(val);
-            this.applyOrRemoveRipple();
-        };
+        if (platform.isAndroid) {
+            this.originalNSFn = this.el.nativeElement._redrawNativeBackground;
+            this.el.nativeElement._redrawNativeBackground = (val) => {
+                this.originalNSFn(val);
+                this.applyOrRemoveRipple();
+            };
+        }
     }
 
     @HostListener('unloaded')

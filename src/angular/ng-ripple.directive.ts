@@ -72,7 +72,9 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         this.loaded = false;
         this.removeRipple();
         // remove monkey patch
-        this.el.nativeElement._redrawNativeBackground = this.originalNSFn;
+        if (platform.isAndroid) {
+            this.el.nativeElement._redrawNativeBackground = this.originalNSFn;
+        }
     }
     getInDP(radius: Length): number {
         return Length.toDevicePixels(radius, 0);

@@ -217,8 +217,8 @@ export class NativeRippleDirective implements OnInit, OnChanges {
                 const outerRadii = Array.create('float', 8);
                 outerRadii[0] = outerRadii[1] = this.getInDP((<View>this.el.nativeElement).borderTopLeftRadius);
                 outerRadii[2] = outerRadii[3] = this.getInDP((<View>this.el.nativeElement).borderTopRightRadius);
-                outerRadii[4] = outerRadii[5] = this.getInDP((<View>this.el.nativeElement).borderBottomLeftRadius);
-                outerRadii[6] = outerRadii[7] = this.getInDP((<View>this.el.nativeElement).borderBottomRightRadius);
+                outerRadii[4] = outerRadii[5] = this.getInDP((<View>this.el.nativeElement).borderBottomRightRadius);
+                outerRadii[6] = outerRadii[7] = this.getInDP((<View>this.el.nativeElement).borderBottomLeftRadius);
                 const r = new android.graphics.drawable.shapes.RoundRectShape(outerRadii, null, null);
                 const shapeDrawable = new android.graphics.drawable.ShapeDrawable(r);
                 shapeDrawable.getPaint().setColor(android.graphics.Color.BLACK);

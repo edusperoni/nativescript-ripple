@@ -219,14 +219,21 @@ export class NativeRippleDirective implements OnInit, OnChanges {
             const LOLLIPOP = 21;
             if (android.os.Build.VERSION.SDK_INT >= LOLLIPOP) {
                 const androidView = (<View>this.el.nativeElement).android;
-                const outerRadii = Array.create('float', 8);
-                outerRadii[0] = outerRadii[1] = this.getInDP((<View>this.el.nativeElement).borderTopLeftRadius);
-                outerRadii[2] = outerRadii[3] = this.getInDP((<View>this.el.nativeElement).borderTopRightRadius);
-                outerRadii[4] = outerRadii[5] = this.getInDP((<View>this.el.nativeElement).borderBottomRightRadius);
-                outerRadii[6] = outerRadii[7] = this.getInDP((<View>this.el.nativeElement).borderBottomLeftRadius);
-                const r = new android.graphics.drawable.shapes.RoundRectShape(outerRadii, null, null);
-                const shapeDrawable = new android.graphics.drawable.ShapeDrawable(r);
-                shapeDrawable.getPaint().setColor(android.graphics.Color.BLACK);
+                let originalBg = androidView.getBackground();
+                let mask;
+                if (originalBg instanceof (<any>android.graphics.drawable).RippleDrawable && originalBg.getNumberOfLayers() < 2) {
+                    // previous ripple didn't need a mask!
+                    mask = null;
+                } else {
+                    const outerRadii = Array.create('float', 8);
+                    outerRadii[0] = outerRadii[1] = this.getInDP((<View>this.el.nativeElement).borderTopLeftRadius);
+                    outerRadii[2] = outerRadii[3] = this.getInDP((<View>this.el.nativeElement).borderTopRightRadius);
+                    outerRadii[4] = outerRadii[5] = this.getInDP((<View>this.el.nativeElement).borderBottomRightRadius);
+                    outerRadii[6] = outerRadii[7] = this.getInDP((<View>this.el.nativeElement).borderBottomLeftRadius);
+                    const r = new android.graphics.drawable.shapes.RoundRectShape(outerRadii, null, null);
+                    mask = new android.graphics.drawable.ShapeDrawable(r);
+                    mask.getPaint().setColor(android.graphics.Color.BLACK);
+                }
                 if (androidView.getBackground() == null) { // safe measure. If background is null, turning off and on the screen would make it black
                     androidView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
                 }
@@ -234,7 +241,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
                     android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor(this.rippleColor || '#40000000')),
                     androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable ?
                         (<any>androidView.getBackground()).getDrawable(0) : androidView.getBackground(),
-                    shapeDrawable);
+                    mask);
 
                 androidView.setBackground(drawable);
             }

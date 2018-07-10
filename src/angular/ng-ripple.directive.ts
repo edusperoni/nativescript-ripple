@@ -27,7 +27,11 @@ export class NativeRippleDirective implements OnInit, OnChanges {
 
     private originalNSFn: any;
 
-    constructor(private el: ElementRef) { }
+    constructor(private el: ElementRef) {
+        if (platform.isAndroid) {
+            this.originalNSFn = this.el.nativeElement._redrawNativeBackground; //always store the original method
+        }
+    }
 
     ngOnInit() {
         this.initialized = true;
@@ -50,6 +54,11 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         }
     }
 
+    monkeyPatch = (val) => {
+        this.originalNSFn(val);
+        this.applyOrRemoveRipple();
+    }
+
     @HostListener('loaded')
     onLoaded() {
         this.loaded = true;
@@ -59,12 +68,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         this.applyOrRemoveRipple();
         // WARNING: monkey patching {N} functions ahead
         if (platform.isAndroid) {
-            this.originalNSFn = this.el.nativeElement._redrawNativeBackground.bind(this.el.nativeElement);
-            this.el.nativeElement._redrawNativeBackground = (val) => {
-                this.removeRipple();
-                this.originalNSFn(val);
-                this.applyOrRemoveRipple();
-            };
+            this.el.nativeElement._redrawNativeBackground = this.monkeyPatch;
         }
     }
 

@@ -26,6 +26,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
     holdAnimation: any;
 
     private originalNSFn: any;
+    private previousNSFn: any;
 
     constructor(private el: ElementRef) {
         if (platform.isAndroid) {
@@ -55,7 +56,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
     }
 
     monkeyPatch = (val) => {
-        this.originalNSFn(val);
+        this.previousNSFn.call(this.el.nativeElement, val);
         this.applyOrRemoveRipple();
     }
 
@@ -68,6 +69,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         this.applyOrRemoveRipple();
         // WARNING: monkey patching {N} functions ahead
         if (platform.isAndroid) {
+            this.previousNSFn = this.el.nativeElement._redrawNativeBackground; // monkey should play nice with other monkeys
             this.el.nativeElement._redrawNativeBackground = this.monkeyPatch;
         }
     }
@@ -78,7 +80,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         this.removeRipple();
         // remove monkey patch
         if (platform.isAndroid) {
-            this.el.nativeElement._redrawNativeBackground = this.originalNSFn;
+            this.el.nativeElement._redrawNativeBackground = this.originalNSFn; // always revert to the original
         }
     }
     getInDP(radius: Length): number {

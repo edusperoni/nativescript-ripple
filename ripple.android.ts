@@ -46,7 +46,7 @@ export class Ripple extends common.Ripple {
   }
 
   [rippleBorderRadiusProperty.setNative](value: number) {
-    this.nativeView.setRippleBorderRadius(value);
+    this.nativeView.setRippleRoundedCorners(value);
   }
 
   [rippleDelayClickProperty.setNative](value: boolean) {

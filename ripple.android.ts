@@ -1,17 +1,19 @@
 /***************************************************************************************
-* Made for the {N} community by Brad Martin @BradWayneMartin
-* https://twitter.com/BradWayneMartin
-* https://github.com/bradmartin
-* http://bradmartin.net
-* Open Source Lib for Android : https://github.com/balysv/material-ripple
-*************************************************************************************/
+ * Made for the {N} community by Brad Martin @BradWayneMartin
+ * https://twitter.com/BradWayneMartin
+ * https://github.com/bradmartin
+ * http://bradmartin.net
+ * Open Source Lib for Android : https://github.com/balysv/material-ripple
+ *************************************************************************************/
 
 import * as common from "./ripple-common";
 import { Color } from "tns-core-modules/color";
 import {
   fadeDurationProperty,
   rippleAlphaProperty,
+  rippleBorderRadiusProperty,
   rippleColorProperty,
+  rippleDelayClickProperty,
   rippleDurationProperty
 } from "./ripple-common";
 
@@ -41,6 +43,14 @@ export class Ripple extends common.Ripple {
 
   [fadeDurationProperty.setNative](value: number) {
     this.nativeView.setRippleFadeDuration(value);
+  }
+
+  [rippleBorderRadiusProperty.setNative](value: number) {
+    this.nativeView.setRippleRoundedCorners(value);
+  }
+
+  [rippleDelayClickProperty.setNative](value: boolean) {
+    this.nativeView.setRippleDelayClick(value);
   }
 
   public createNativeView() {

@@ -10,6 +10,7 @@
         "noLib": false,
         "noEmitHelpers": true,
         "experimentalDecorators": true,
+        "skipLibCheck": true,
         "lib": [
             "es6",
             "dom"

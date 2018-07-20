@@ -1,9 +1,9 @@
 /***************************************************************************************
-* Made for the {N} community by Brad Martin @BradWayneMartin
-* https://twitter.com/BradWayneMartin
-* https://github.com/bradmartin
-* http://bradmartin.net
-*************************************************************************************/
+ * Made for the {N} community by Brad Martin @BradWayneMartin
+ * https://twitter.com/BradWayneMartin
+ * https://github.com/bradmartin
+ * http://bradmartin.net
+ *************************************************************************************/
 
 import { Property } from "tns-core-modules/ui/core/properties";
 import { ContentView } from "tns-core-modules/ui/content-view";
@@ -50,3 +50,15 @@ export const fadeDurationProperty = new Property<Ripple, string>({
   affectsLayout: true
 });
 fadeDurationProperty.register(Ripple);
+
+export const rippleBorderRadiusProperty = new Property<Ripple, number>({
+  name: "rippleBorderRadius",
+  affectsLayout: true
+});
+rippleBorderRadiusProperty.register(Ripple);
+
+export const rippleDelayClickProperty = new Property<Ripple, boolean>({
+  name: "rippleDelayClick",
+  affectsLayout: true
+});
+rippleDelayClickProperty.register(Ripple);

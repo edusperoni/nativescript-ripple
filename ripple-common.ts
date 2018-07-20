@@ -5,12 +5,10 @@
  * http://bradmartin.net
  *************************************************************************************/
 
-import { Property } from "tns-core-modules/ui/core/properties";
-import { ContentView } from "tns-core-modules/ui/content-view";
-import { View } from "tns-core-modules/ui/core/view";
-import { Color } from "tns-core-modules/color";
-
-declare var android, java, com: any;
+import { Color } from 'tns-core-modules/color';
+import { ContentView } from 'tns-core-modules/ui/content-view';
+import { Property } from 'tns-core-modules/ui/core/properties';
+import { View } from 'tns-core-modules/ui/core/view';
 
 export abstract class Ripple extends ContentView {
   protected rippleColor: Color = null;
@@ -27,38 +25,38 @@ export abstract class Ripple extends ContentView {
 }
 
 export const rippleColorProperty = new Property<Ripple, Color>({
-  name: "rippleColor",
+  name: 'rippleColor',
   equalityComparer: Color.equals,
   valueConverter: v => new Color(v)
 });
 rippleColorProperty.register(Ripple);
 
 export const rippleAlphaProperty = new Property<Ripple, number>({
-  name: "rippleAlpha",
+  name: 'rippleAlpha',
   affectsLayout: true
 });
 rippleAlphaProperty.register(Ripple);
 
 export const rippleDurationProperty = new Property<Ripple, number>({
-  name: "rippleDuration",
+  name: 'rippleDuration',
   affectsLayout: true
 });
 rippleDurationProperty.register(Ripple);
 
 export const fadeDurationProperty = new Property<Ripple, string>({
-  name: "fadeDuration",
+  name: 'fadeDuration',
   affectsLayout: true
 });
 fadeDurationProperty.register(Ripple);
 
 export const rippleBorderRadiusProperty = new Property<Ripple, number>({
-  name: "rippleBorderRadius",
+  name: 'rippleBorderRadius',
   affectsLayout: true
 });
 rippleBorderRadiusProperty.register(Ripple);
 
 export const rippleDelayClickProperty = new Property<Ripple, boolean>({
-  name: "rippleDelayClick",
+  name: 'rippleDelayClick',
   affectsLayout: true
 });
 rippleDelayClickProperty.register(Ripple);

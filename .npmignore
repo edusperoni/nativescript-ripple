@@ -14,3 +14,4 @@ tsconfig.json
 .idea/
 .vscode/
 README.md
+!.prettierrc

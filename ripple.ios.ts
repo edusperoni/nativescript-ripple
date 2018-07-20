@@ -4,22 +4,20 @@
  * https://github.com/bradmartin
  * http://bradmartin.net
  *************************************************************************************/
+/// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 
-import * as common from "./ripple-common";
-import { View } from "tns-core-modules/ui/core/view";
-import { Color } from "tns-core-modules/color";
-import {
-  TouchGestureEventData,
-  GestureTypes
-} from "tns-core-modules/ui/gestures";
+import { Color } from 'tns-core-modules/color';
+import { View } from 'tns-core-modules/ui/core/view';
+import { GestureTypes, TouchGestureEventData } from 'tns-core-modules/ui/gestures';
+import * as common from './ripple-common';
 
-declare var CGAffineTransformMakeScale: any;
-declare var CGPointMake: any;
-declare var CGRectMake: any;
-declare var UIView: any;
 declare var UIViewAnimationOptionCurveEaseOut: any;
 
 export class Ripple extends common.Ripple {
+  constructor() {
+    super();
+  }
+
   performRipple(x: number, y: number) {
     if (!(this.content instanceof View)) {
       return;
@@ -30,17 +28,12 @@ export class Ripple extends common.Ripple {
     const scale = 8.0;
 
     const size = this.content.getActualSize();
-    const radius = Math.min(
-      (Math.min(size.height, size.width) / scale) * 0.8,
-      60
-    );
-    const ripple = UIView.alloc().initWithFrame(
-      CGRectMake(0, 0, radius, radius)
-    );
+    const radius = Math.min((Math.min(size.height, size.width) / scale) * 0.8, 60);
+    const ripple = UIView.alloc().initWithFrame(CGRectMake(0, 0, radius, radius));
     ripple.layer.cornerRadius = radius * 0.5;
     ripple.backgroundColor = (this.content.backgroundColor instanceof Color
       ? this.content.backgroundColor
-      : new Color(this.content.backgroundColor || "#000000")
+      : new Color(this.content.backgroundColor || '#000000')
     ).ios;
     ripple.alpha = 1.0;
     nativeView.insertSubviewAtIndex(ripple, 0);
@@ -49,13 +42,11 @@ export class Ripple extends common.Ripple {
     UIView.animateWithDurationDelayOptionsAnimationsCompletion(
       0.6,
       0,
-      UIViewAnimationOptionCurveEaseOut,
+      UIViewAnimationOptions.CurveEaseOut,
       () => {
         ripple.transform = CGAffineTransformMakeScale(scale, scale);
         ripple.alpha = 0.0;
-        ripple.backgroundColor = new Color(
-          this.rippleColor.hex || "#cecece"
-        ).ios;
+        ripple.backgroundColor = new Color(this.rippleColor.hex || '#cecece').ios;
       },
       (finished: boolean) => {
         ripple.removeFromSuperview();
@@ -74,7 +65,7 @@ export class Ripple extends common.Ripple {
       };
       this.content.on(GestureTypes.touch, this.tapFn);
     } else {
-      throw new Error("Content must inherit from View!");
+      throw new Error('Content must inherit from View!');
     }
   }
 

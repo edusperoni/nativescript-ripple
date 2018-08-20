@@ -129,7 +129,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         );
         ripple.layer.cornerRadius = radius * 0.5;
         ripple.backgroundColor = new Color(
-            this.rippleColor || '#400000'
+            this.rippleColor || '#000000'
         ).ios;
         ripple.alpha = 0.5;
         nativeView.insertSubviewAtIndex(ripple, 0);
@@ -163,7 +163,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
             CGRectMake(0, 0, size.width, size.height)
         );
         holdanim.backgroundColor = new Color(
-            this.rippleColor || '#400000'
+            this.rippleColor || '#000000'
         ).ios;
         holdanim.alpha = 0.0;
         nativeView.insertSubviewAtIndex(holdanim, 0);

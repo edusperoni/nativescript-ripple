@@ -143,6 +143,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         ripple.layer.cornerRadius = radius * 0.5;
         ripple.backgroundColor = this.getRippleColor().ios;
         ripple.alpha = NativeRippleDirective.IOS_RIPPLE_ALPHA;
+        ripple.userInteractionEnabled = false;
         nativeView.insertSubviewAtIndex(ripple, 0);
         ripple.center = CGPointMake(x || 0, y || 0);
 
@@ -164,6 +165,9 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         if (!(this.el.nativeElement instanceof View)) {
             return;
         }
+        if (this.holdAnimation) {
+            this.removeHold(); // this should never happen, but...
+        }
 
         const nativeView = this.el.nativeElement.ios;
 
@@ -175,6 +179,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         );
         holdanim.backgroundColor = this.getRippleColor().ios;
         holdanim.alpha = 0.0;
+        holdanim.userInteractionEnabled = false;
         nativeView.insertSubviewAtIndex(holdanim, 0);
         holdanim.center = CGPointMake(size.width / 2.0, size.height / 2.0);
 

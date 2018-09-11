@@ -7,11 +7,22 @@
         <StackLayout>
             <Label ripple rippleColor="#d50000" text="Red Ripples!!!" class="message" textWrap="true" (tap)="dummy()"></Label>
             <Image ripple rippleColor="#fff000" (tap)="dummy()" src="~/app/images/batman.png" margin="10" stretch="aspectFit"></Image>
+            <GridLayout columns="*,*">
+                <StackLayout col="0" ripple rippleColor="blue" [rippleColorAlpha]="1" rippleLayer="background" (tap)="dummy()">
+                    <Label text="This ripple is in the background layer (iOS unaffected)" textWrap="true" style="text-align: center"></Label>
+                    <Image src="~/app/images/batman.png" width="50" stretch="aspectFit"></Image>
+                </StackLayout>
+                <StackLayout col="1" ripple rippleColor="blue" [rippleColorAlpha]="1" (tap)="dummy()">
+                    <Label text="This ripple is in the foreground layer (default)" textWrap="true" style="text-align: center"></Label>
+                    <Image src="~/app/images/batman.png" width="50" stretch="aspectFit"></Image>
+                </StackLayout>
+            </GridLayout>
             <Label ripple text="Default Ripple" class="message" textWrap="true" (tap)="dummy()"></Label>
             <Label ripple text="Ripple Alpha Override" [rippleColorAlpha]="1" class="message" textWrap="true" (tap)="dummy()"></Label>
             <GridLayout ripple rippleColor="#fff" style="background-color: #FF4081; border-radius: 30; width: 60; height: 60; margin-top: 5; margin-bottom: 5;"
                 (tap)="dummy()">
-                <Label text="B" fontSize="30" color="#fff" verticalAlignment="center" horizontalAlignment="center" textWrap="true"></Label>
+                <Label text="B" fontSize="30" color="#fff" verticalAlignment="center" horizontalAlignment="center"
+                    textWrap="true"></Label>
             </GridLayout>
 
             <Label ripple rippleColor="#c8c8c8" class="label-button" text="Lighter Ripple" textWrap="true" (tap)="dummy()"></Label>

@@ -48,6 +48,14 @@ export class MyModule { }
 ### Implementation details
 
 On Android, if the view does not have a background, we assign a transparent one. Otherwise, turning the screen off and then on again makes the background the same as the mask color (black).
+
+### Ripple Options
+
+`rippleColor` sets the ripple color. Examples: `"#ffffff"` | `"rgba(255,255,255,0.5)"`.
+
+`rippleColorAlpha` sets the ripple color alpha (multiplicative). Default: `0.25`. **NOTE:** This is multiplicative to a 0.5 alpha given by the native class `RippleDrawable`. This same value is hardcoded in iOS to make both platforms behave the same.
+
+`rippleLayer` sets the layer the ripple is applied to (ANDROID ONLY). Allowed values: `foreground` (default) | `background`. Setting this to `background` will make the ripple only appear on the View's background (meaning it won't appear in front of an image, for example).
     
 ## License
 

@@ -1,0 +1,22 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Home"></Label>
+</ActionBar>
+
+<GridLayout class="page">
+    <ScrollView>
+        <StackLayout>
+            <Label ripple rippleColor="#d50000" text="Red Ripples!!!" class="message" textWrap="true" (tap)="dummy()"></Label>
+            <Image ripple rippleColor="#fff000" (tap)="dummy()" src="~/app/images/batman.png" margin="10" stretch="aspectFit"></Image>
+            <Label ripple text="Default Ripple" class="message" textWrap="true" (tap)="dummy()"></Label>
+            <GridLayout ripple rippleColor="#fff" style="background-color: #FF4081; border-radius: 30; width: 60; height: 60; margin-top: 5; margin-bottom: 5;"
+                (tap)="dummy()">
+                <Label text="B" fontSize="30" color="#fff" verticalAlignment="center" horizontalAlignment="center" textWrap="true"></Label>
+            </GridLayout>
+
+            <Label ripple rippleColor="#c8c8c8" class="label-button" text="Lighter Ripple" textWrap="true" (tap)="dummy()"></Label>
+            <Label ripple rippleColor="#f5f5f5" text="Possibilities" margin="15" class="dark-button" color="#fff"
+                padding="10" textWrap="true" (tap)="tapEvent()"></Label>
+
+        </StackLayout>
+    </ScrollView>
+</GridLayout>

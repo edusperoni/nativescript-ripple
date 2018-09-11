@@ -1,0 +1,24 @@
+.message {
+    color: #000;
+    font-size: 20;
+    horizontal-align: center;
+    padding:20;
+  }
+  
+  .label-button {
+    border-width: 1;
+    border-color: #888;
+    font-size: 14;
+    horizontal-align: center;
+    padding: 10;
+  }
+  
+  .dark-button {
+    background-color: #222;
+    color: #fff;
+    horizontal-align: center;
+    font-size: 18;
+    padding: 10;
+    margin: 15;
+    width: 30%;
+  }

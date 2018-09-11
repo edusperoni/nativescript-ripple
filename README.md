@@ -12,6 +12,14 @@ This is heavily based on https://github.com/bradmartin/nativescript-ripple with 
 tns plugin add nativescript-ng-ripple
 ```
 
+## **BREAKING CHANGES**
+
+### v2.0
+
+- Ripple is now applied to the foreground by default on Android. (see `rippleLayer`)
+- Ripple color is now modified by an alpha parameter meaning a ripple color of `rgba(255,255,255,1)` turns into `rgba(255,255,255,0.25)` (default behavior unchanged). See `rippleColorAlpha` property.
+- Due to native implementation of ripple, the color is at most at `50%` alpha at any time, this behavior has been replicated to iOS. Together with `rippleColorAlpha`, the behavior should be consistent across platforms.
+
 ## Usage 
 
 This will only work on Android Lollipop 5.0 or later and any version of iOS.

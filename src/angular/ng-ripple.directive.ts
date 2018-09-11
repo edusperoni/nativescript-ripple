@@ -18,6 +18,8 @@ declare var UIViewAnimationOptionCurveEaseOut: any;
 export class NativeRippleDirective implements OnInit, OnChanges {
     @Input() ripple: string;
     @Input() rippleColor?: string;
+    @Input() rippleColorAlpha?: number = 0.25; // multiplicative with rippleColor and the default ripple opacity of 0.5 (from RippleDrawable)
+    @Input() rippleLayer?: "background" | "foreground" = "foreground";
     loaded: boolean = false;
     initialized: boolean = false;
 
@@ -42,6 +44,20 @@ export class NativeRippleDirective implements OnInit, OnChanges {
             changes.rippleColor.currentValue !== changes.rippleColor.currentValue) {
             this.applyOrRemoveRipple();
         }
+    }
+
+    getRippleColor() {
+        let c = new Color(this.rippleColor || "#000000");
+        c = new Color(c.a * (this.rippleColorAlpha || 0.25), c.r, c.g, c.b);
+        return c;
+    }
+
+    getRippleAlpha() {
+        return (this.rippleColorAlpha || 0.25) * (platform.isIOS ? 0.5 : 1);
+    }
+
+    getRippleLayer() {
+        return (this.rippleLayer || "foreground");
     }
 
     applyOrRemoveRipple() {
@@ -128,10 +144,8 @@ export class NativeRippleDirective implements OnInit, OnChanges {
             CGRectMake(0, 0, radius, radius)
         );
         ripple.layer.cornerRadius = radius * 0.5;
-        ripple.backgroundColor = new Color(
-            this.rippleColor || '#000000'
-        ).ios;
-        ripple.alpha = 0.5;
+        ripple.backgroundColor = this.getRippleColor().ios;
+        ripple.alpha = this.getRippleAlpha();
         nativeView.insertSubviewAtIndex(ripple, 0);
         ripple.center = CGPointMake(x || 0, y || 0);
 
@@ -162,9 +176,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         const holdanim = UIView.alloc().initWithFrame(
             CGRectMake(0, 0, size.width, size.height)
         );
-        holdanim.backgroundColor = new Color(
-            this.rippleColor || '#000000'
-        ).ios;
+        holdanim.backgroundColor = this.getRippleColor().ios;
         holdanim.alpha = 0.0;
         nativeView.insertSubviewAtIndex(holdanim, 0);
         holdanim.center = CGPointMake(size.width / 2.0, size.height / 2.0);
@@ -177,7 +189,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
             UIViewAnimationOptionCurveEaseOut,
             () => {
                 // holdanim.transform = CGAffineTransformMakeScale(scale, scale);
-                holdanim.alpha = 0.24;
+                holdanim.alpha = this.getRippleAlpha();
                 // holdanim.backgroundColor = new Color(
                 //     this.rippleColor || '#400000'
                 // ).ios;
@@ -217,11 +229,16 @@ export class NativeRippleDirective implements OnInit, OnChanges {
     }
 
     applyOnAndroid() {
-        if (this.el.nativeElement instanceof View) {
+        if (this.el.nativeElement instanceof View && (<View>this.el.nativeElement).android) {
             const LOLLIPOP = 21;
             if (android.os.Build.VERSION.SDK_INT >= LOLLIPOP) {
                 const androidView = (<View>this.el.nativeElement).android;
-                let originalBg = androidView.getBackground();
+                if (
+                    (this.getRippleLayer() === "background" && androidView.getForeground() instanceof (<any>android.graphics.drawable).RippleDrawable) ||
+                    (this.getRippleLayer() === "foreground" && androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable)) {
+                    this.removeOnAndroid(); // remove old ripples
+                }
+                let originalBg = this.getRippleLayer() === "background" ? androidView.getBackground() : androidView.getForeground();
                 let mask;
                 if (originalBg instanceof (<any>android.graphics.drawable).RippleDrawable && originalBg.getNumberOfLayers() < 2) {
                     // previous ripple didn't need a mask!
@@ -236,25 +253,33 @@ export class NativeRippleDirective implements OnInit, OnChanges {
                     mask = new android.graphics.drawable.ShapeDrawable(r);
                     mask.getPaint().setColor(android.graphics.Color.BLACK);
                 }
-                if (androidView.getBackground() == null) { // safe measure. If background is null, turning off and on the screen would make it black
-                    androidView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+                let rippleBg = this.getRippleLayer() === "background" ? androidView.getBackground() : androidView.getForeground();
+                if (rippleBg == null) { // safe measure. If background is null, turning off and on the screen would make it black
+                    rippleBg = new android.graphics.drawable.ColorDrawable(new Color("transparent").android);
                 }
                 const drawable = new (<any>android.graphics.drawable).RippleDrawable(
-                    android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor(this.rippleColor || '#40000000')),
-                    androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable ?
-                        (<any>androidView.getBackground()).getDrawable(0) : androidView.getBackground(),
+                    android.content.res.ColorStateList.valueOf(this.getRippleColor().android),
+                    rippleBg instanceof (<any>android.graphics.drawable).RippleDrawable ?
+                        rippleBg.getDrawable(0) : rippleBg,
                     mask);
 
-                androidView.setBackground(drawable);
+                if (this.getRippleLayer() === "background") {
+                    androidView.setBackground(drawable);
+                } else {
+                    androidView.setForeground(drawable);
+                }
             }
         }
     }
 
     removeOnAndroid() {
-        if (this.el.nativeElement instanceof View) {
+        if (this.el.nativeElement instanceof View && (<View>this.el.nativeElement).android) {
             const LOLLIPOP = 21;
             if (android.os.Build.VERSION.SDK_INT >= LOLLIPOP) {
                 const androidView = (<View>this.el.nativeElement).android;
+                if (androidView.getForeground() instanceof (<any>android.graphics.drawable).RippleDrawable) {
+                    androidView.setForeground((<any>androidView.getForeground()).getDrawable(0));
+                }
                 if (androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable) {
                     androidView.setBackground((<any>androidView.getBackground()).getDrawable(0));
                 }

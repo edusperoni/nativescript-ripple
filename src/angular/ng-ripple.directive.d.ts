@@ -1,16 +1,27 @@
 import { ElementRef, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Color } from 'tns-core-modules/color';
 import { Length } from 'tns-core-modules/ui/styling/style-properties';
 export declare class NativeRippleDirective implements OnInit, OnChanges {
     private el;
+    ripple: string;
     rippleColor?: string;
+    rippleColorAlpha?: number;
+    rippleLayer?: "background" | "foreground";
     loaded: boolean;
     initialized: boolean;
     tapFn: any;
     holding: boolean;
     holdAnimation: any;
+    private originalNSFn;
+    private previousNSFn;
     constructor(el: ElementRef);
     ngOnInit(): void;
     ngOnChanges(changes: SimpleChanges): void;
+    getRippleColor(): Color;
+    getRippleAlpha(): number;
+    getRippleLayer(): "background" | "foreground";
+    applyOrRemoveRipple(): void;
+    monkeyPatch: (val: any) => void;
     onLoaded(): void;
     onUnloaded(): void;
     getInDP(radius: Length): number;
@@ -22,4 +33,5 @@ export declare class NativeRippleDirective implements OnInit, OnChanges {
     applyOnIOS(): void;
     removeOnIOS(): void;
     applyOnAndroid(): void;
+    removeOnAndroid(): void;
 }

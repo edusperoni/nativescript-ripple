@@ -3,6 +3,7 @@ import { Color } from 'tns-core-modules/color';
 import { Length } from 'tns-core-modules/ui/styling/style-properties';
 export declare class NativeRippleDirective implements OnInit, OnChanges {
     private el;
+    private static readonly IOS_RIPPLE_ALPHA;
     ripple: string;
     rippleColor?: string;
     rippleColorAlpha?: number;
@@ -18,7 +19,6 @@ export declare class NativeRippleDirective implements OnInit, OnChanges {
     ngOnInit(): void;
     ngOnChanges(changes: SimpleChanges): void;
     getRippleColor(): Color;
-    getRippleAlpha(): number;
     getRippleLayer(): "background" | "foreground";
     applyOrRemoveRipple(): void;
     monkeyPatch: (val: any) => void;

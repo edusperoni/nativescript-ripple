@@ -16,6 +16,7 @@ declare var UIViewAnimationOptionCurveEaseOut: any;
 
 @Directive({ selector: '[ripple]' })
 export class NativeRippleDirective implements OnInit, OnChanges {
+    private static readonly IOS_RIPPLE_ALPHA = 0.5;
     @Input() ripple: string;
     @Input() rippleColor?: string;
     @Input() rippleColorAlpha?: number = 0.25; // multiplicative with rippleColor and the default ripple opacity of 0.5 (from RippleDrawable)
@@ -50,10 +51,6 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         let c = new Color(this.rippleColor || "#000000");
         c = new Color(c.a * (this.rippleColorAlpha || 0.25), c.r, c.g, c.b);
         return c;
-    }
-
-    getRippleAlpha() {
-        return (this.rippleColorAlpha || 0.25) * (platform.isIOS ? 0.5 : 1);
     }
 
     getRippleLayer() {
@@ -145,7 +142,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
         );
         ripple.layer.cornerRadius = radius * 0.5;
         ripple.backgroundColor = this.getRippleColor().ios;
-        ripple.alpha = this.getRippleAlpha();
+        ripple.alpha = NativeRippleDirective.IOS_RIPPLE_ALPHA;
         nativeView.insertSubviewAtIndex(ripple, 0);
         ripple.center = CGPointMake(x || 0, y || 0);
 
@@ -189,7 +186,7 @@ export class NativeRippleDirective implements OnInit, OnChanges {
             UIViewAnimationOptionCurveEaseOut,
             () => {
                 // holdanim.transform = CGAffineTransformMakeScale(scale, scale);
-                holdanim.alpha = this.getRippleAlpha();
+                holdanim.alpha = NativeRippleDirective.IOS_RIPPLE_ALPHA;
                 // holdanim.backgroundColor = new Color(
                 //     this.rippleColor || '#400000'
                 // ).ios;

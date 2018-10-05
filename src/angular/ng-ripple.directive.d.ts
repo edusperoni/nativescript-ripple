@@ -1,7 +1,7 @@
-import { ElementRef, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Color } from 'tns-core-modules/color';
 import { Length } from 'tns-core-modules/ui/styling/style-properties';
-export declare class NativeRippleDirective implements OnInit, OnChanges {
+export declare class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
     private el;
     private static readonly IOS_RIPPLE_ALPHA;
     ripple: string;
@@ -17,9 +17,10 @@ export declare class NativeRippleDirective implements OnInit, OnChanges {
     private previousNSFn;
     constructor(el: ElementRef);
     ngOnInit(): void;
+    ngOnDestroy(): void;
     ngOnChanges(changes: SimpleChanges): void;
     getRippleColor(): Color;
-    getRippleLayer(): "background" | "foreground";
+    getRippleLayer(): "foreground" | "background";
     applyOrRemoveRipple(): void;
     monkeyPatch: (val: any) => void;
     onLoaded(): void;

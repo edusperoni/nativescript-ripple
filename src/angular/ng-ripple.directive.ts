@@ -255,10 +255,14 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
     applyOnAndroid() {
         if (this.el.nativeElement instanceof View && (<View>this.el.nativeElement).android) {
             const LOLLIPOP = 21;
+            const MARSHMALLOW = 23;
             if (android.os.Build.VERSION.SDK_INT >= LOLLIPOP) {
                 const androidView = (<View>this.el.nativeElement).android;
                 if (
-                    (this.getRippleLayer() === "background" && androidView.getForeground() instanceof (<any>android.graphics.drawable).RippleDrawable) ||
+                    (
+                        this.getRippleLayer() === "background" && android.os.Build.VERSION.SDK_INT >= MARSHMALLOW &&
+                        androidView.getForeground() instanceof (<any>android.graphics.drawable).RippleDrawable
+                    ) ||
                     (this.getRippleLayer() === "foreground" && androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable)) {
                     this.removeOnAndroid(); // remove old ripples
                 }
@@ -299,10 +303,13 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
     removeOnAndroid() {
         if (this.el.nativeElement instanceof View && (<View>this.el.nativeElement).android) {
             const LOLLIPOP = 21;
+            const MARSHMALLOW = 23;
             if (android.os.Build.VERSION.SDK_INT >= LOLLIPOP) {
                 const androidView = (<View>this.el.nativeElement).android;
-                if (androidView.getForeground() instanceof (<any>android.graphics.drawable).RippleDrawable) {
-                    androidView.setForeground((<any>androidView.getForeground()).getDrawable(0));
+                if (android.os.Build.VERSION.SDK_INT >= MARSHMALLOW) {
+                    if (androidView.getForeground() instanceof (<any>android.graphics.drawable).RippleDrawable) {
+                        androidView.setForeground((<any>androidView.getForeground()).getDrawable(0));
+                    }
                 }
                 if (androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable) {
                     androidView.setBackground((<any>androidView.getBackground()).getDrawable(0));

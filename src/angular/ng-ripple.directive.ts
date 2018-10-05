@@ -43,7 +43,7 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
             this.initialized = true;
             addWeakEventListener(this.el.nativeElement, "loaded", this.onLoaded, this);
             addWeakEventListener(this.el.nativeElement, "unloaded", this.onUnloaded, this);
-            if(this.el.nativeElement.isLoaded) {
+            if (this.el.nativeElement.isLoaded) {
                 this.onLoaded();
             }
         }
@@ -69,7 +69,13 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
         return c;
     }
 
-    getRippleLayer() {
+    getRippleLayer(): "foreground" | "background" {
+        if (platform.isAndroid) {
+            const MARSHMALLOW = 23;
+            if (android.os.Build.VERSION.SDK_INT < MARSHMALLOW) {
+                return "background";
+            }
+        }
         return (this.rippleLayer || "foreground");
     }
 

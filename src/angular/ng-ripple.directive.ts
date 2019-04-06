@@ -6,6 +6,11 @@ import { addWeakEventListener, removeWeakEventListener } from "tns-core-modules/
 import { GestureTypes, TouchGestureEventData } from 'tns-core-modules/ui/gestures/gestures';
 import { Length } from 'tns-core-modules/ui/styling/style-properties';
 
+type AugmentedView = View & {
+    __rippleOriginalBg?: any;
+    __rippleBg?: any;
+};
+
 declare const android: any;
 declare const java: any;
 declare const Array: any;
@@ -34,7 +39,7 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
 
     constructor(private el: ElementRef) {
         if (platform.isAndroid) {
-            this.originalNSFn = this.el.nativeElement._redrawNativeBackground; //always store the original method
+            this.originalNSFn = this.el.nativeElement._redrawNativeBackground; // always store the original method
         }
     }
 
@@ -91,7 +96,12 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     monkeyPatch = (val) => {
+        const tnsView: AugmentedView = this.el.nativeElement;
+        if (tnsView.__rippleOriginalBg && tnsView.android.getBackground() !== tnsView.__rippleOriginalBg) { // reset the background
+            tnsView.android.setBackground(tnsView.__rippleOriginalBg);
+        }
         this.previousNSFn.call(this.el.nativeElement, val);
+        tnsView.__rippleOriginalBg = tnsView.android.getBackground();
         this.applyOrRemoveRipple();
     }
 
@@ -266,7 +276,12 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
                     (this.getRippleLayer() === "foreground" && androidView.getBackground() instanceof (<any>android.graphics.drawable).RippleDrawable)) {
                     this.removeOnAndroid(); // remove old ripples
                 }
+                const tnsView: AugmentedView = this.el.nativeElement;
                 let originalBg = this.getRippleLayer() === "background" ? androidView.getBackground() : androidView.getForeground();
+                if (!originalBg) {
+                    originalBg = new android.graphics.drawable.ColorDrawable(new Color("transparent").android);
+                }
+                let drawable;
                 let mask;
                 if (originalBg instanceof (<any>android.graphics.drawable).RippleDrawable && originalBg.getNumberOfLayers() < 2) {
                     // previous ripple didn't need a mask!
@@ -281,15 +296,25 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
                     mask = new android.graphics.drawable.ShapeDrawable(r);
                     mask.getPaint().setColor(android.graphics.Color.BLACK);
                 }
-                let rippleBg = this.getRippleLayer() === "background" ? androidView.getBackground() : androidView.getForeground();
-                if (rippleBg == null) { // safe measure. If background is null, turning off and on the screen would make it black
-                    rippleBg = new android.graphics.drawable.ColorDrawable(new Color("transparent").android);
+                if (tnsView.__rippleBg) {
+                    tnsView.__rippleBg.setColor(android.content.res.ColorStateList.valueOf(this.getRippleColor().android));
+                    if (this.getRippleLayer() === "background") {
+                        const layer0Id = tnsView.__rippleBg.getId(0);
+                        tnsView.__rippleBg.setDrawableByLayerId(layer0Id,
+                            originalBg instanceof (<any>android.graphics.drawable).RippleDrawable ? originalBg.getDrawable(0) :
+                                originalBg);
+                    }
+                    const layer1Id = tnsView.__rippleBg.getId(1);
+                    tnsView.__rippleBg.setDrawableByLayerId(layer1Id, mask);
+                    drawable = tnsView.__rippleBg;
+                } else {
+                    drawable = new (<any>android.graphics.drawable).RippleDrawable(
+                        android.content.res.ColorStateList.valueOf(this.getRippleColor().android),
+                        originalBg instanceof (<any>android.graphics.drawable).RippleDrawable ? originalBg.getDrawable(0) :
+                            originalBg,
+                        mask);
+                    tnsView.__rippleBg = drawable;
                 }
-                const drawable = new (<any>android.graphics.drawable).RippleDrawable(
-                    android.content.res.ColorStateList.valueOf(this.getRippleColor().android),
-                    rippleBg instanceof (<any>android.graphics.drawable).RippleDrawable ?
-                        rippleBg.getDrawable(0) : rippleBg,
-                    mask);
 
                 if (this.getRippleLayer() === "background") {
                     androidView.setBackground(drawable);

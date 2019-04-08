@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 
 @Component({
     selector: "Home",
@@ -8,7 +8,9 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HomeComponent implements OnInit {
 
-    constructor() {
+    isGreen = true;
+
+    constructor(private cdRef: ChangeDetectorRef) {
         // Use the component constructor to inject providers.
     }
 
@@ -18,6 +20,11 @@ export class HomeComponent implements OnInit {
 
     dummy(): void {
 
+    }
+
+    switchStyle() {
+        this.isGreen = !this.isGreen;
+        this.cdRef.detectChanges();
     }
     tapEvent() {
         alert('Tap Event Works too');

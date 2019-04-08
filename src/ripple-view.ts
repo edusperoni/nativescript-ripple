@@ -4,16 +4,21 @@ import { Property } from 'tns-core-modules/ui/core/properties';
 import { View, booleanConverter } from 'tns-core-modules/ui/core/view';
 import { Ripple } from './lib/ripple';
 
-
 export class RippleView extends ContentView {
-    public content: any = null;
     private rippleHelper: Ripple;
 
+    constructor() {
+        super();
+        console.log("CONSTRUCTOR");
+    }
+
     public _addChildFromBuilder(name: string, value: any) {
-        if (value instanceof View) {
-            this.content = value;
+        super._addChildFromBuilder(name, value);
+        console.log(name, value);
+        if (this.content) {
             this.rippleHelper = new Ripple(value);
             this.rippleHelper.init();
+            console.log(this.content, this.rippleHelper);
         }
     }
 }

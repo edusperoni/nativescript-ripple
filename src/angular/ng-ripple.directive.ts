@@ -44,17 +44,19 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.ripple) {
-            this.rippleHelper.enabled = this.ripple !== "off";
-        }
-        if (changes.rippleColor) {
-            this.rippleHelper.color = this.rippleColor;
-        }
-        if (changes.rippleColorAlpha) {
-            this.rippleHelper.alpha = this.rippleColorAlpha;
-        }
-        if (changes.rippleLayer) {
-            this.rippleHelper.rippleLayer = this.rippleLayer;
+        if (this.rippleHelper) {
+            if (changes.ripple) {
+                this.rippleHelper.enabled = this.ripple !== "off";
+            }
+            if (changes.rippleColor) {
+                this.rippleHelper.color = this.rippleColor;
+            }
+            if (changes.rippleColorAlpha) {
+                this.rippleHelper.alpha = this.rippleColorAlpha;
+            }
+            if (changes.rippleLayer) {
+                this.rippleHelper.rippleLayer = this.rippleLayer;
+            }
         }
     }
 }

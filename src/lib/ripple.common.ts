@@ -4,8 +4,9 @@ import { View } from "tns-core-modules/ui/page/page";
 import { Length } from "tns-core-modules/ui/styling/style-properties";
 
 export class RippleCommon {
+    protected static DEFAULT_RIPPLE_ALPHA = 0.25;
     protected tnsView: WeakRef<View>;
-    protected effectiveColor: Color = new Color("#000000");
+    protected effectiveColor: Color = new Color(0.25 * 255, 0, 0, 0);
     protected _rippleColor: string | Color;
     protected _rippleColorAlpha: number | null | undefined;
     protected _enabled: boolean = true;
@@ -49,6 +50,7 @@ export class RippleCommon {
 
     init() {
         this.initialized = true;
+        this.setEffectiveColor();
         this.bindEvents();
         this.refreshRippleState();
     }
@@ -74,24 +76,9 @@ export class RippleCommon {
         return false;
     }
 
-    private invalidateColor() {
-        let c: Color;
-        if (this._rippleColor) {
-            if (this._rippleColor instanceof Color) {
-                c = this._rippleColor;
-            } else {
-                c = new Color(this._rippleColor);
-            }
-        } else {
-            c = new Color("#000000");
-        }
-        let alpha = 0.25;
-        if (this.alpha !== null && this.alpha !== undefined) {
-            alpha = +this.alpha;
-        }
-        c = new Color(c.a * alpha, c.r, c.g, c.b);
-        this.effectiveColor = c;
-        this.refreshRippleColor();
+    protected invalidateColor() {
+        this.setEffectiveColor();
+        if (this.initialized) { this.refreshRippleColor(); }
     }
 
     protected refreshRippleColor() {
@@ -104,6 +91,24 @@ export class RippleCommon {
 
     protected onUnloaded() {
         /** */
+    }
+    private setEffectiveColor() {
+        let c: Color;
+        if (this._rippleColor) {
+            if (this._rippleColor instanceof Color) {
+                c = this._rippleColor;
+            } else {
+                c = new Color(this._rippleColor);
+            }
+        } else {
+            c = new Color("#000000");
+        }
+        let alpha = RippleCommon.DEFAULT_RIPPLE_ALPHA;
+        if (this.alpha !== null && this.alpha !== undefined) {
+            alpha = +this.alpha;
+        }
+        c = new Color(c.a * alpha, c.r, c.g, c.b);
+        this.effectiveColor = c;
     }
     private bindEvents() {
         const tnsView = this.tnsView.get();

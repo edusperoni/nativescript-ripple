@@ -7,9 +7,13 @@
         <StackLayout>
             <Label ripple rippleColor="#d50000" text="Red Ripples!!!" class="message" textWrap="true"
                 (tap)="switchStyle()" [class.green]="isGreen"></Label>
-            <Button ripple="off" rippleLayer="background" rippleColor="#d50000" text="This button had it's ripple removed!"></Button>
-            <Ripple>
-                <Label text="Default Ripple" class="message" textWrap="true" (tap)="dummy()"></Label>
+            <Button ripple="off" rippleLayer="background" rippleColor="#d50000"
+                text="This button had it's ripple removed!"></Button>
+            <Ripple rippleColor="blue" [rippleEnabled]="isGreen">
+                <StackLayout style="margin: 10; border-radius: 10; border-color: black; border-width: 1;" (tap)="dummy()">
+                    <Label text="Default Ripple" class="message" textWrap="true"></Label>
+                    <Label text="Default Ripple" class="message" textWrap="true"></Label>
+                </StackLayout>
             </Ripple>
             <Image ripple rippleColor="#fff000" (tap)="dummy()" src="~/app/images/batman.png" margin="10"
                 stretch="aspectFit"></Image>

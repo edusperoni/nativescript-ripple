@@ -99,7 +99,7 @@ rippleLayer.register(RippleView);
 
 export const rippleEnabled = new Property<RippleView, boolean>({
     name: 'rippleEnabled',
-    defaultValue: false,
+    defaultValue: true,
     affectsLayout: false,
     valueConverter: booleanConverter,
     valueChanged: (target) => { target._updateEnabled(); }

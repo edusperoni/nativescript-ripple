@@ -18,7 +18,7 @@
       "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"]
     }
   },
-  "files": ["ripple.android.ts", "ripple.ios.ts", "ripple-common.ts"],
+  "files": ["ripple.d.ts","ripple.android.ts", "ripple.ios.ts", "ripple-common.ts"],
   "exclude": ["node_modules", "platforms"],
   "compileOnSave": true
 }

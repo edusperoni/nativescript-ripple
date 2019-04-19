@@ -6,20 +6,11 @@
  *************************************************************************************/
 
 import { Color } from 'tns-core-modules/color';
-import { ContentView } from 'tns-core-modules/ui/content-view';
 import { Property } from 'tns-core-modules/ui/core/properties';
-import { View } from 'tns-core-modules/ui/core/view';
+import { ContentView } from 'tns-core-modules/ui/content-view';
 
 export abstract class Ripple extends ContentView {
   protected rippleColor: Color = null;
-
-  public content: any = null;
-
-  public _addChildFromBuilder(name: string, value: any) {
-    if (value instanceof View) {
-      this.content = value;
-    }
-  }
 
   public abstract performRipple(x: number, y: number);
 }

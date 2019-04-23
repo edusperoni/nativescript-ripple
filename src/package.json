@@ -12,10 +12,10 @@
   },
   "scripts": {
     "build": "tsc",
-    "demo.ios": "npm run preparedemo && cd demo && tns emulate ios",
-    "demo.android": "npm run preparedemo && cd demo && tns run android",
-    "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-ripple && tns plugin add .. && tns install",
-    "setup": "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
+    "tsc": "tsc -skipLibCheck",
+    "plugin.link": "npm link && cd ../demo && npm link nativescript-ripple",
+    "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
+    "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -64,8 +64,9 @@
   "devDependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
-    "tns-platform-declarations": "^4.1.0",
+    "tns-core-modules": "^5.0.0",
+    "tns-platform-declarations": "^5.0.0",
     "prettier": "^1.13.7",
-    "typescript": "^2.9.2"
+    "typescript": "~3.1.6"
   }
 }

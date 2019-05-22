@@ -64,6 +64,20 @@ On Android, if the view does not have a background, we assign a transparent one.
 `rippleColorAlpha` sets the ripple color alpha (multiplicative). Default: `0.25`. **NOTE:** This is multiplicative to a 0.5 alpha given by the native class `RippleDrawable`. This same value is hardcoded in iOS to make both platforms behave the same.
 
 `rippleLayer` sets the layer the ripple is applied to (ANDROID ONLY). Allowed values: `foreground` (default on API>=23) | `background`. Setting this to `background` will make the ripple only appear on the View's background (meaning it won't appear in front of an image, for example).
+
+### Known Issues
+
+#### No Ripple on Android
+
+If your Ripple is not working on Android, try the following:
+
+1. Verify the view you're applying the Ripple to has a `tap` event
+2. If the view is a Text-like view (Buttons, Labels, etc), there is a bug that prevents any `foreground` to be applied to it when `textWrap` is not `true` and `textAlignment` is `center` or `right`. There are many fixes (only one is needed):
+    1. Wrap the View in another layout (like a `GridLayout`)
+    2. Change the `rippleLayer` to `background`
+    3. Use `textWrap="true"`
+    4. Disable `HorizontallyScrolling` for your View (`yourLabel.android.setHorizontallyScrolling(false);`). Warning: this is set to true every time `textAlignment` changes
+
     
 ## License
 

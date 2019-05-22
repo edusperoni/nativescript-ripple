@@ -1,0 +1,37 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:RL="nativescript-ng-ripple/ripple-view" navigatingTo="onNavigatingTo" class="page">
+    <Page.actionBar>
+        <ActionBar title="My App" icon="" class="action-bar">
+        </ActionBar>
+    </Page.actionBar>
+    <ScrollView>
+        <StackLayout>
+            <RL:Ripple rippleColor="#d50000">
+                <Label text="Red Ripples!!!" class="message" textWrap="true" tap="dummy" />
+            </RL:Ripple>
+
+            <RL:Ripple rippleColor="#fff000">
+                <Image src="~/images/batman.png" margin="10" stretch="aspectFit" tap="dummy"/>
+            </RL:Ripple>
+
+            <RL:Ripple>
+                <Label text="Default Ripple" class="message" textWrap="true" tap="dummy"/>
+            </RL:Ripple>
+
+            <RL:Ripple rippleColor="#fff">
+                <GridLayout backgroundColor="#FF4081" borderRadius="30" height="60" width="60" tap="dummy">
+                    <Label text="B" fontSize="30" color="#fff" verticalAlignment="center" horizontalAlignment="center" textWrap="true"/>
+                </GridLayout>
+            </RL:Ripple>
+
+            <RL:Ripple rippleColor="#c8c8c8">
+                <Label class="label-button" text="Lighter Ripple" textWrap="true" tap="dummy"/>
+            </RL:Ripple>
+
+            <RL:Ripple rippleColor="#f5f5f5">
+                <Label text="Possibilities" color="#fff" padding="10" textWrap="true" tap="tapEvent" class="dark-button"/>
+            </RL:Ripple>
+
+        </StackLayout>
+    </ScrollView>
+</Page>

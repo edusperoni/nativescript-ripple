@@ -2,7 +2,7 @@ import { Color } from "tns-core-modules/color";
 import * as platform from "tns-core-modules/platform";
 import { View } from "tns-core-modules/ui/page/page";
 import { Length } from "tns-core-modules/ui/styling/style-properties";
-import { RippleCommon } from "./ripple.common";
+import { RippleHelperCommon } from "./ripple-helper.common";
 
 declare const android: any;
 declare const Array: any;
@@ -15,7 +15,7 @@ function getInDP(radius: Length): number {
 }
 
 
-export class Ripple extends RippleCommon {
+export class RippleHelper extends RippleHelperCommon {
     private hasCachedBackground = true;
     private cachedRippleDrawable: any;
     private cachedViewBackground: any;

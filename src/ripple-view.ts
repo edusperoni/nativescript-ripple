@@ -2,10 +2,10 @@ import { Color } from 'tns-core-modules/color';
 import { ContentView } from 'tns-core-modules/ui/content-view';
 import { Property } from 'tns-core-modules/ui/core/properties';
 import { View, booleanConverter, AddChildFromBuilder } from 'tns-core-modules/ui/core/view';
-import { Ripple } from './lib/ripple';
+import { RippleHelper } from './lib/ripple-helper';
 
 export class RippleView extends ContentView implements AddChildFromBuilder {
-    private rippleHelper: Ripple;
+    private rippleHelper: RippleHelper;
     private initialized = false;
 
     rippleEnabled: boolean;
@@ -63,7 +63,7 @@ export class RippleView extends ContentView implements AddChildFromBuilder {
         if (this.initialized) { return; }
         if (this.content) {
             this.initialized = true;
-            this.rippleHelper = new Ripple(this.content);
+            this.rippleHelper = new RippleHelper(this.content);
             this.rippleHelper.alpha = this.rippleColorAlpha;
             this.rippleHelper.color = this.rippleColor;
             this.rippleHelper.enabled = this.rippleEnabled;

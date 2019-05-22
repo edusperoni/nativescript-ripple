@@ -1,6 +1,6 @@
 import { Color } from "tns-core-modules/color";
 import { View } from "tns-core-modules/ui/page/page";
-export declare class RippleCommon {
+export declare class RippleHelperCommon {
     protected static DEFAULT_RIPPLE_ALPHA: number;
     protected tnsView: WeakRef<View>;
     protected effectiveColor: Color;

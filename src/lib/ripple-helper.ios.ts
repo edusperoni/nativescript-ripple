@@ -1,7 +1,7 @@
 import { GestureTypes, TouchGestureEventData } from "tns-core-modules/ui/gestures/gestures";
 import { View } from "tns-core-modules/ui/page/page";
 import { Length } from "tns-core-modules/ui/styling/style-properties";
-import { RippleCommon } from "./ripple.common";
+import { RippleHelperCommon } from "./ripple-helper.common";
 
 declare var CGAffineTransformMakeScale: any;
 declare var CGPointMake: any;
@@ -9,7 +9,7 @@ declare var CGRectMake: any;
 declare var UIView: any;
 declare var UIViewAnimationOptionCurveEaseOut: any;
 
-export class Ripple extends RippleCommon {
+export class RippleHelper extends RippleHelperCommon {
     private static readonly IOS_RIPPLE_ALPHA = 0.5;
     private tapFn;
     private holding: boolean = false;
@@ -51,7 +51,7 @@ export class Ripple extends RippleCommon {
         );
         ripple.layer.cornerRadius = radius * 0.5;
         ripple.backgroundColor = this.effectiveColor.ios;
-        ripple.alpha = Ripple.IOS_RIPPLE_ALPHA;
+        ripple.alpha = RippleHelper.IOS_RIPPLE_ALPHA;
         ripple.userInteractionEnabled = false;
         nativeView.insertSubviewAtIndex(ripple, 0);
         ripple.center = CGPointMake(x || 0, y || 0);
@@ -100,7 +100,7 @@ export class Ripple extends RippleCommon {
             0,
             UIViewAnimationOptionCurveEaseOut,
             () => {
-                holdanim.alpha = Ripple.IOS_RIPPLE_ALPHA;
+                holdanim.alpha = RippleHelper.IOS_RIPPLE_ALPHA;
             },
             (finished: boolean) => {
                 // holdanim.removeFromSuperview();

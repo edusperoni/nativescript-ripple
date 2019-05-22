@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { Ripple } from '../lib/ripple';
+import { RippleHelper } from '../lib/ripple-helper';
 
 @Directive({ selector: '[ripple]' })
 export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
@@ -7,13 +7,13 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
     @Input() rippleColor?: string;
     @Input() rippleColorAlpha?: number; // multiplicative with rippleColor and the default ripple opacity of 0.5 (from RippleDrawable)
     @Input() rippleLayer: "background" | "foreground" | "auto" = "auto";
-    private rippleHelper: Ripple;
+    private rippleHelper: RippleHelper;
 
     constructor(private el: ElementRef) {
     }
 
     ngOnInit() {
-        this.rippleHelper = new Ripple(this.el.nativeElement);
+        this.rippleHelper = new RippleHelper(this.el.nativeElement);
         this.rippleHelper.alpha = this.rippleColorAlpha;
         this.rippleHelper.color = this.rippleColor;
         this.rippleHelper.enabled = this.ripple !== "off";

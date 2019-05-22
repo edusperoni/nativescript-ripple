@@ -3,7 +3,7 @@ import { addWeakEventListener } from "tns-core-modules/ui/core/weak-event-listen
 import { View } from "tns-core-modules/ui/page/page";
 import { Length } from "tns-core-modules/ui/styling/style-properties";
 
-export class RippleCommon {
+export class RippleHelperCommon {
     protected static DEFAULT_RIPPLE_ALPHA = 0.25;
     protected tnsView: WeakRef<View>;
     protected effectiveColor: Color = new Color(0.25 * 255, 0, 0, 0);
@@ -103,7 +103,7 @@ export class RippleCommon {
         } else {
             c = new Color("#000000");
         }
-        let alpha = RippleCommon.DEFAULT_RIPPLE_ALPHA;
+        let alpha = RippleHelperCommon.DEFAULT_RIPPLE_ALPHA;
         if (this.alpha !== null && this.alpha !== undefined) {
             alpha = +this.alpha;
         }

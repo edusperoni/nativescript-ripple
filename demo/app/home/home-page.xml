@@ -1,9 +1,12 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
-    xmlns:RL="nativescript-ng-ripple/ripple-view" navigatingTo="onNavigatingTo" class="page">
-    <Page.actionBar>
-        <ActionBar title="My App" icon="" class="action-bar">
-        </ActionBar>
-    </Page.actionBar>
+<Page class="page"
+    navigatingTo="onNavigatingTo" 
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:RL="nativescript-ng-ripple/ripple-view">
+    
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Home"></Label>
+    </ActionBar>
+
     <ScrollView>
         <StackLayout>
             <RL:Ripple rippleColor="#d50000">
@@ -11,7 +14,7 @@
             </RL:Ripple>
 
             <RL:Ripple rippleColor="#fff000">
-                <Image src="~/images/batman.png" margin="10" stretch="aspectFit" tap="dummy"/>
+                <Image src="~/home/images/batman.png" margin="10" stretch="aspectFit" tap="dummy"/>
             </RL:Ripple>
 
             <RL:Ripple>

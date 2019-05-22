@@ -5,13 +5,14 @@ const nsWebpack = require("nativescript-dev-webpack");
 const nativescriptTarget = require("nativescript-dev-webpack/nativescript-target");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { NativeScriptWorkerPlugin } = require("nativescript-worker-loader/NativeScriptWorkerPlugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const hashSalt = Date.now().toString();
 
 module.exports = env => {
-    // Add your custom Activities, Services and other android app components here.
+    // Add your custom Activities, Services and other Android app components here.
     const appComponents = [
         "tns-core-modules/ui/frame",
         "tns-core-modules/ui/frame/activity",
@@ -45,15 +46,18 @@ module.exports = env => {
         hmr, // --env.hmr,
         unitTesting, // --env.unitTesting
     } = env;
-
     const isAnySourceMapEnabled = !!sourceMap || !!hiddenSourceMap;
     const externals = nsWebpack.getConvertedExternals(env.externals);
+
     const appFullPath = resolve(projectRoot, appPath);
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
 
     const entryModule = nsWebpack.getEntryModule(appFullPath, platform);
-    const entryPath = `.${sep}${entryModule}.js`;
+    const entryPath = `.${sep}${entryModule}.ts`;
     const entries = { bundle: entryPath };
+
+    const tsConfigPath = resolve(projectRoot, "tsconfig.tns.json");
+
     if (platform === "ios") {
         entries["tns_modules/tns-core-modules/inspector_modules"] = "inspector_modules.js";
     };
@@ -83,17 +87,19 @@ module.exports = env => {
             hashSalt
         },
         resolve: {
-            extensions: [".js", ".scss", ".css"],
+            extensions: [".ts", ".js", ".scss", ".css"],
             // Resolve {N} system modules from tns-core-modules
             modules: [
+                resolve(__dirname, "node_modules/tns-core-modules"),
+                resolve(__dirname, "node_modules"),
                 "node_modules/tns-core-modules",
                 "node_modules",
             ],
             alias: {
                 '~': appFullPath
             },
-            // don't resolve symlinks to symlinked modules
-            symlinks: false
+            // resolve symlinks to symlinked modules
+            symlinks: true
         },
         resolveLoader: {
             // don't resolve symlinks to symlinked loaders
@@ -170,7 +176,7 @@ module.exports = env => {
                 },
 
                 {
-                    test: /-page\.js$/,
+                    test: /-page\.ts$/,
                     use: "nativescript-dev-webpack/script-hot-loader"
                 },
 
@@ -197,6 +203,21 @@ module.exports = env => {
                         { loader: "css-loader", options: { url: false } },
                         "sass-loader"
                     ]
+                },
+
+                {
+                    test: /\.ts$/,
+                    use: {
+                        loader: "ts-loader",
+                        options: {
+                            configFile: tsConfigPath,
+                            transpileOnly: !!hmr,
+                            allowTsInNodeModules: true,
+                            compilerOptions: {
+                                sourceMap: isAnySourceMapEnabled
+                            }
+                        },
+                    }
                 },
             ]
         },
@@ -273,6 +294,12 @@ module.exports = env => {
 
     if (hmr) {
         config.plugins.push(new webpack.HotModuleReplacementPlugin());
+
+        // With HMR ts-loader should run in `transpileOnly` mode,
+        // so assure type-checking with fork-ts-checker-webpack-plugin
+        config.plugins.push(new ForkTsCheckerWebpackPlugin({
+            tsconfig: tsConfigPath
+        }));
     }
 
 

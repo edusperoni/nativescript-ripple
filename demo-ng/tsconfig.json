@@ -25,5 +25,9 @@
     "exclude": [
         "node_modules",
         "platforms"
-    ]
+    ],
+	"include": [
+		"../src",
+		"**/*"
+	]
 }

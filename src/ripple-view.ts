@@ -4,7 +4,7 @@ import { Property } from 'tns-core-modules/ui/core/properties';
 import { View, booleanConverter, AddChildFromBuilder } from 'tns-core-modules/ui/core/view';
 import { RippleHelper } from './lib/ripple-helper';
 
-export class RippleView extends ContentView implements AddChildFromBuilder {
+export class Ripple extends ContentView implements AddChildFromBuilder {
     private rippleHelper: RippleHelper;
     private initialized = false;
 
@@ -73,35 +73,35 @@ export class RippleView extends ContentView implements AddChildFromBuilder {
     }
 }
 
-export const rippleColorProperty = new Property<RippleView, Color>({
+export const rippleColorProperty = new Property<Ripple, Color>({
     name: 'rippleColor',
     equalityComparer: Color.equals,
     valueConverter: v => new Color(v),
     valueChanged: (target) => { target._updateColor(); }
 });
-rippleColorProperty.register(RippleView);
+rippleColorProperty.register(Ripple);
 
-export const rippleColorAlpha = new Property<RippleView, number | null | undefined>({
+export const rippleColorAlpha = new Property<Ripple, number | null | undefined>({
     name: 'rippleColorAlpha',
     affectsLayout: false,
     valueConverter: (v) => v != null && v !== undefined ? +v : undefined,
     valueChanged: (target) => { target._updateAlpha(); }
 });
-rippleColorAlpha.register(RippleView);
+rippleColorAlpha.register(Ripple);
 
-export const rippleLayer = new Property<RippleView, "background" | "foreground" | "auto">({
+export const rippleLayer = new Property<Ripple, "background" | "foreground" | "auto">({
     name: 'rippleLayer',
     defaultValue: "auto",
     affectsLayout: false,
     valueChanged: (target) => { target._updateLayer(); }
 });
-rippleLayer.register(RippleView);
+rippleLayer.register(Ripple);
 
-export const rippleEnabled = new Property<RippleView, boolean>({
+export const rippleEnabled = new Property<Ripple, boolean>({
     name: 'rippleEnabled',
     defaultValue: true,
     affectsLayout: false,
     valueConverter: booleanConverter,
     valueChanged: (target) => { target._updateEnabled(); }
 });
-rippleEnabled.register(RippleView);
+rippleEnabled.register(Ripple);

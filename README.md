@@ -63,7 +63,9 @@ On Android, if the view does not have a background, we assign a transparent one.
 
 `rippleColorAlpha` sets the ripple color alpha (multiplicative). Default: `0.25`. **NOTE:** This is multiplicative to a 0.5 alpha given by the native class `RippleDrawable`. This same value is hardcoded in iOS to make both platforms behave the same.
 
-`rippleLayer` sets the layer the ripple is applied to (ANDROID ONLY). Allowed values: `foreground` (default on API>=23) | `background`. Setting this to `background` will make the ripple only appear on the View's background (meaning it won't appear in front of an image, for example).
+`rippleLayer` sets the layer the ripple is applied to (**ANDROID ONLY**). Allowed values: `foreground` (default on API>=23) | `background`. Setting this to `background` will make the ripple only appear on the View's background (meaning it won't appear in front of an image, for example).
+
+`ripple` can be set to "off" (`ripple="off"`) to disable the ripple. This will also disable ripple effects on Views that have them natively (like `Button`).
 
 ### Known Issues
 

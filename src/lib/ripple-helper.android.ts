@@ -114,7 +114,7 @@ export class RippleHelper extends RippleHelperCommon {
                     mask = new android.graphics.drawable.ShapeDrawable(r);
                     mask.getPaint().setColor(android.graphics.Color.BLACK);
                 }
-                console.log(targetLayer, tnsView, this.rippleLayer);
+
                 if (actualRipple) {
                     actualRipple.setColor(android.content.res.ColorStateList.valueOf(this.effectiveColor.android));
                     const layer0Id = actualRipple.getId(0);

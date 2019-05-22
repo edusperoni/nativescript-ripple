@@ -86,7 +86,7 @@ export class RippleHelperCommon {
     }
 
     protected onLoaded() {
-        /** */
+        this.refreshRippleState();
     }
 
     protected onUnloaded() {

@@ -78,10 +78,6 @@ export class RippleHelper extends RippleHelperCommon {
         this.cachedViewBackground = null;
     }
 
-    onLoaded() {
-        this.refreshRippleState();
-    }
-
     protected apply(): boolean {
         const tnsView = this.tnsView.get();
         if (tnsView && tnsView instanceof View && tnsView.android) {

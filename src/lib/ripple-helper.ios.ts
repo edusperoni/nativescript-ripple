@@ -113,7 +113,7 @@ export class RippleHelper extends RippleHelperCommon {
             return true;
         }
         const outTnsView = this.tnsView.get();
-        if (outTnsView instanceof View) {
+        if (outTnsView instanceof View && outTnsView.ios) {
             this.tapFn = (args: TouchGestureEventData) => {
                 const tnsView = this.tnsView.get();
                 if (tnsView) {
@@ -143,7 +143,7 @@ export class RippleHelper extends RippleHelperCommon {
             return true;
         }
         const tnsView = this.tnsView.get();
-        if (tnsView instanceof View) {
+        if (tnsView instanceof View && tnsView.ios) {
             this.removeHold();
             tnsView.off(GestureTypes.touch, this.tapFn);
             return true;

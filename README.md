@@ -67,7 +67,8 @@ From your command prompt/termial go to your app's root folder and execute:
 
 ## Attributes
 **rippleColor : string** *optional* - sets the ripple color.
-**rippleBorderRadius : string** *optional* - sets width radius of the ripple effect.
+
+**rippleBorderRadius : string** *optional* - sets the radius of the ripple effect. e.g rippleBorderRadius = "30"
 
 ## Nativescript + Angular
 In the `main.ts` file, add those lines in order to use the ripple effect :

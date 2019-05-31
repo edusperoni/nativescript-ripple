@@ -48,7 +48,7 @@ From your command prompt/termial go to your app's root folder and execute:
         <Label text="Default Ripple" class="message" textWrap="true" />
       </RL:Ripple>
 
-      <RL:Ripple rippleColor="#fff" backgroundColor="#FF4081" borderRadius="30" height="60" width="60">
+      <RL:Ripple rippleColor="#fff" backgroundColor="#FF4081" rippleBorderRadius="30" height="60" width="60">
         <Label text="B" fontSize="30" color="#fff" verticalAlignment="center" horizontalAlignment="center" textWrap="true" />
       </RL:Ripple>
 
@@ -67,6 +67,7 @@ From your command prompt/termial go to your app's root folder and execute:
 
 ## Attributes
 **rippleColor : string** *optional* - sets the ripple color.
+**rippleBorderRadius : string** *optional* - sets width radius of the ripple effect.
 
 ## Nativescript + Angular
 In the `main.ts` file, add those lines in order to use the ripple effect :

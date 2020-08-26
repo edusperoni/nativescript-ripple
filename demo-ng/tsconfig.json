@@ -26,8 +26,8 @@
         "node_modules",
         "platforms"
     ],
-	"include": [
-		"../src",
-		"**/*"
-	]
+    "include": [
+        "../src",
+        "**/*"
+    ]
 }

@@ -1,7 +1,5 @@
-import { Color } from "tns-core-modules/color";
-import { addWeakEventListener } from "tns-core-modules/ui/core/weak-event-listener/weak-event-listener";
-import { View } from "tns-core-modules/ui/page/page";
-import { Length } from "tns-core-modules/ui/styling/style-properties";
+import { Color, View } from "@nativescript/core";
+import { addWeakEventListener } from "@nativescript/core/ui/core/weak-event-listener/weak-event-listener";
 
 export class RippleHelperCommon {
     protected static DEFAULT_RIPPLE_ALPHA = 0.25;

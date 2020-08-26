@@ -1,5 +1,5 @@
-import { Color } from "tns-core-modules/color";
-import { View } from "tns-core-modules/ui/page/page";
+import { Color } from "@nativescript/core";
+import { View } from "@nativescript/core";
 export declare class RippleHelperCommon {
     protected static DEFAULT_RIPPLE_ALPHA: number;
     protected tnsView: WeakRef<View>;
@@ -10,10 +10,14 @@ export declare class RippleHelperCommon {
     protected rippleApplied: boolean;
     protected _rippleLayer: "background" | "foreground" | "auto";
     protected initialized: boolean;
-    enabled: boolean;
-    rippleLayer: "background" | "foreground" | "auto";
-    color: string | Color;
-    alpha: number | null | undefined;
+    get enabled(): boolean;
+    set enabled(v: boolean);
+    get rippleLayer(): "background" | "foreground" | "auto";
+    set rippleLayer(layer: "background" | "foreground" | "auto");
+    get color(): string | Color;
+    set color(v: string | Color);
+    set alpha(v: number | null | undefined);
+    get alpha(): number | null | undefined;
     constructor(tnsView: View);
     init(): void;
     dispose(): void;
@@ -24,6 +28,6 @@ export declare class RippleHelperCommon {
     protected refreshRippleColor(): void;
     protected onLoaded(): void;
     protected onUnloaded(): void;
-    private setEffectiveColor();
-    private bindEvents();
+    private setEffectiveColor;
+    private bindEvents;
 }

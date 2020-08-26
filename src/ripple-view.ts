@@ -1,7 +1,6 @@
-import { Color } from 'tns-core-modules/color';
-import { ContentView } from 'tns-core-modules/ui/content-view';
-import { Property } from 'tns-core-modules/ui/core/properties';
-import { View, booleanConverter, AddChildFromBuilder } from 'tns-core-modules/ui/core/view';
+import { Color, ContentView } from '@nativescript/core';
+import { Property } from '@nativescript/core/ui/core/properties';
+import { AddChildFromBuilder, booleanConverter } from '@nativescript/core/ui/core/view';
 import { RippleHelper } from './lib/ripple-helper';
 
 export class Ripple extends ContentView implements AddChildFromBuilder {

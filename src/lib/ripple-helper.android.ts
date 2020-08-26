@@ -1,7 +1,5 @@
-import { Color } from "tns-core-modules/color";
-import * as platform from "tns-core-modules/platform";
-import { View } from "tns-core-modules/ui/page/page";
-import { Length } from "tns-core-modules/ui/styling/style-properties";
+import { Color, isAndroid, View } from "@nativescript/core";
+import { Length } from "@nativescript/core/ui/styling/style-properties";
 import { RippleHelperCommon } from "./ripple-helper.common";
 
 declare const android: any;
@@ -39,7 +37,7 @@ export class RippleHelper extends RippleHelperCommon {
     }
     set rippleLayer(layer: "background" | "foreground" | "auto") {
         const oldLayer = this._rippleLayer;
-        if (platform.isAndroid) {
+        if (isAndroid) {
             if (android.os.Build.VERSION.SDK_INT < MARSHMALLOW) {
                 if (this._rippleLayer !== "background") { this._rippleLayer = "background"; }
             } else if (["background", "foreground", "auto"].indexOf(layer) >= 0 && layer !== this._rippleLayer) {

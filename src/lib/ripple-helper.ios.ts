@@ -1,6 +1,5 @@
-import { GestureTypes, TouchGestureEventData } from "tns-core-modules/ui/gestures/gestures";
-import { View } from "tns-core-modules/ui/page/page";
-import { Length } from "tns-core-modules/ui/styling/style-properties";
+import { GestureTypes, TouchGestureEventData } from "@nativescript/core/ui/gestures/gestures";
+import { View } from "@nativescript/core";
 import { RippleHelperCommon } from "./ripple-helper.common";
 
 declare var CGAffineTransformMakeScale: any;

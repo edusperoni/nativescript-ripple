@@ -57,8 +57,8 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
         }
     }
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.ripple.currentValue !== changes.ripple.previousValue ||
-            changes.rippleColor.currentValue !== changes.rippleColor.currentValue) {
+        if ((changes.ripple && changes.ripple.currentValue !== changes.ripple.previousValue) ||
+            (changes.rippleColor && changes.rippleColor.currentValue !== changes.rippleColor.currentValue)) {
             this.applyOrRemoveRipple();
         }
     }

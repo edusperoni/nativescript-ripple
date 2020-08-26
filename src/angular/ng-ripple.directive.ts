@@ -34,7 +34,7 @@ export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {
 
     constructor(private el: ElementRef) {
         if (platform.isAndroid) {
-            this.originalNSFn = this.el.nativeElement._redrawNativeBackground; //always store the original method
+            this.originalNSFn = this.el.nativeElement._redrawNativeBackground; // always store the original method
         }
     }
 

@@ -1,5 +1,4 @@
-import { Color } from "@nativescript/core";
-import { View } from "@nativescript/core";
+import { Color, View } from "@nativescript/core";
 export declare class RippleHelperCommon {
     protected static DEFAULT_RIPPLE_ALPHA: number;
     protected tnsView: WeakRef<View>;

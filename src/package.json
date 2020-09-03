@@ -53,6 +53,7 @@
         "@angular/core": "~10.0.12",
         "@angular/forms": "~10.0.12",
         "@angular/platform-browser": "~10.0.12",
+        "@angular/animations": "~10.0.12",
         "@angular/router": "~10.0.12",
         "@nativescript/angular": "^10.0.2",
         "@nativescript/core": "^7.0.0",

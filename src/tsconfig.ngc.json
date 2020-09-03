@@ -4,10 +4,11 @@
 		"outDir": "./",
 		"sourceMap": false,
 		"declaration": true,
+		"target": "ES2017",
+        "module": "esnext",
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"target": "es5",
 		"typeRoots": [
 			"node_modules/@types"
 		],

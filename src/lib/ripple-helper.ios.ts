@@ -1,4 +1,4 @@
-import { GestureTypes, TouchGestureEventData } from "@nativescript/core/ui/gestures/gestures";
+import { GestureTypes, TouchGestureEventData } from "@nativescript/core/ui/gestures";
 import { View } from "@nativescript/core";
 import { RippleHelperCommon } from "./ripple-helper.common";
 

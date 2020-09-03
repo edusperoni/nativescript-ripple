@@ -4,7 +4,7 @@
 *.js
 *.js.map
 *.log
-src/*.d.ts
+src/**/*.d.ts
 src/**/*metadata.json
 !src/index.d.ts
 !src/references.d.ts

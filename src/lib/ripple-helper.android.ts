@@ -1,9 +1,5 @@
-import { Color, isAndroid, View } from "@nativescript/core";
-import { Length } from "@nativescript/core/ui/styling/style-properties";
+import { Color, isAndroid, Length, View } from "@nativescript/core";
 import { RippleHelperCommon } from "./ripple-helper.common";
-
-declare const android: any;
-declare const Array: any;
 
 const MARSHMALLOW = 23;
 const LOLLIPOP = 21;

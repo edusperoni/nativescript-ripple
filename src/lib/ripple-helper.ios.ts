@@ -1,12 +1,5 @@
-import { GestureTypes, TouchGestureEventData } from "@nativescript/core/ui/gestures";
-import { View } from "@nativescript/core";
+import { View, GestureTypes, TouchGestureEventData } from "@nativescript/core";
 import { RippleHelperCommon } from "./ripple-helper.common";
-
-declare var CGAffineTransformMakeScale: any;
-declare var CGPointMake: any;
-declare var CGRectMake: any;
-declare var UIView: any;
-declare var UIViewAnimationOptionCurveEaseOut: any;
 
 export class RippleHelper extends RippleHelperCommon {
     private static readonly IOS_RIPPLE_ALPHA = 0.5;
@@ -58,7 +51,7 @@ export class RippleHelper extends RippleHelperCommon {
         UIView.animateWithDurationDelayOptionsAnimationsCompletion(
             0.4,
             0,
-            UIViewAnimationOptionCurveEaseOut,
+            UIViewAnimationOptions.CurveEaseOut,
             () => {
                 ripple.transform = CGAffineTransformMakeScale(scale, scale);
                 ripple.alpha = 0.0;
@@ -97,7 +90,7 @@ export class RippleHelper extends RippleHelperCommon {
         UIView.animateWithDurationDelayOptionsAnimationsCompletion(
             0.6,
             0,
-            UIViewAnimationOptionCurveEaseOut,
+            UIViewAnimationOptions.CurveEaseOut,
             () => {
                 holdanim.alpha = RippleHelper.IOS_RIPPLE_ALPHA;
             },

@@ -1,5 +1,4 @@
-import { Color, View } from "@nativescript/core";
-import { addWeakEventListener } from "@nativescript/core/ui/core/weak-event-listener";
+import { addWeakEventListener, Color, View } from "@nativescript/core";
 
 export class RippleHelperCommon {
     protected static DEFAULT_RIPPLE_ALPHA = 0.25;

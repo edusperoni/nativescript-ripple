@@ -3,6 +3,7 @@
         "target": "ES2017",
         "module": "esnext",
         "moduleResolution": "node",
+        "skipLibCheck": true,
         "declaration": true,
         "removeComments": true,
         "noLib": false,
@@ -11,6 +12,7 @@
         "lib": ["es6", "dom"],
         "sourceMap": true,
         "pretty": true,
+        "baseUrl": ".",
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "noEmitHelpers": true,
@@ -20,8 +22,6 @@
         "noImplicitUseStrict": false,
         "noFallthroughCasesInSwitch": true
     },
-    "exclude": [
-        "node_modules"
-    ],
+    "exclude": ["node_modules", "demo-ng", "demo"],
     "compileOnSave": false
 }

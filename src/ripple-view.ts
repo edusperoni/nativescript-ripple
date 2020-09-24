@@ -1,7 +1,4 @@
-import { Color, ContentView } from '@nativescript/core';
-import { Property } from '@nativescript/core/ui/core/properties';
-import { AddChildFromBuilder } from '@nativescript/core/ui/core/view';
-import { booleanConverter } from '@nativescript/core/ui/core/view-base';
+import { AddChildFromBuilder, booleanConverter, Color, ContentView, Property } from '@nativescript/core';
 import { RippleHelper } from './lib/ripple-helper';
 
 export class Ripple extends ContentView implements AddChildFromBuilder {

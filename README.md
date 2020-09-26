@@ -1,35 +1,75 @@
-# Nativescript Angular Native Ripple Plugin
+# Nativescript-Ripple
 
 This plugin aims to bring a native (or close to native) ripple implementation on Android and iOS. The android version uses a `RippleDrawable` and conserves the previous background, as well as CSS styles.
 
-This is heavily based on https://github.com/bradmartin/nativescript-ripple with some improvements:
-
-* It doesn't override the CSS on Android anymore
-* iOS ripple is closer to the Android ripple.
 ## Installation
 
 ```javascript
-tns plugin add nativescript-ng-ripple
+tns plugin add nativescript-ripple
 ```
-
-## **BREAKING CHANGES**
-
-### v2.0
-
-- Ripple is now applied to the foreground by default on Android. (see `rippleLayer`)
-- Ripple color is now modified by an alpha parameter meaning a ripple color of `rgba(255,255,255,1)` turns into `rgba(255,255,255,0.25)` (default behavior unchanged). See `rippleColorAlpha` property.
-- Due to native implementation of ripple, the color is at most at `50%` alpha at any time, this behavior has been replicated to iOS. Together with `rippleColorAlpha`, the behavior should be consistent across platforms.
-
 ## Usage 
 
 This will only work on Android Lollipop 5.0 or later and any version of iOS.
 
-### Import the NgRippleModule
+### XML
+
+**ENSURE TO BIND A TAP LISTENER TO THE CHILD ELEMENT, OR THIS WON'T WORK ON ANDROID**
+
+```html
+<Page 
+  xmlns="http://schemas.nativescript.org/tns.xsd" 
+  xmlns:RL="nativescript-ripple" loaded="pageLoaded">
+  <ActionBar title="Ripples for Every Android" backgroundColor="#3489db" color="#fff" />
+  <ScrollView>
+    <StackLayout>
+
+      <RL:Ripple rippleColor="#d50000">
+        <Label text="Red Ripples!!!" class="message" textWrap="true" />
+      </RL:Ripple>
+
+      <RL:Ripple rippleColor="#fff000">
+        <Image src="~/images/batman.png" margin="10" stretch="aspectFit" />
+      </RL:Ripple>
+
+      <RL:Ripple>
+        <Label text="Default Ripple" class="message" textWrap="true" />
+      </RL:Ripple>
+
+      <RL:Ripple rippleColor="#fff" backgroundColor="#FF4081" borderRadius="30" height="60" width="60" >
+        <Label text="B" fontSize="30" color="#fff" verticalAlignment="center" horizontalAlignment="center" textWrap="true" tap="{{ tapEvent }}" />
+      </RL:Ripple>
+
+      <RL:Ripple  rippleColor="#c8c8c8" class="label-button">
+        <Label text="Lighter Ripple" textWrap="true" tap="{{ tapEvent }}" />
+      </RL:Ripple>
+
+      <RL:Ripple rippleColor="#f5f5f5" margin="15" tap="{{ tapEvent }}" class="dark-button">
+        <Label text="Possibilities" color="#fff" padding="10" textWrap="true" tap="{{ tapEvent }}" />
+      </RL:Ripple>
+ 
+    </StackLayout>
+  </ScrollView>
+</Page>
+```
+
+### Ripple Options
+
+`rippleColor` sets the ripple color. Examples: `"#ffffff"` | `"rgba(255,255,255,0.5)"`.
+
+`rippleColorAlpha` sets the ripple color alpha (multiplicative). Default: `0.25`. **NOTE:** This is multiplicative to a 0.5 alpha given by the native class `RippleDrawable`. This same value is hardcoded in iOS to make both platforms behave the same.
+
+`rippleLayer` sets the layer the ripple is applied to (**ANDROID ONLY**). Allowed values: `foreground` (default on API>=23) | `background`. Setting this to `background` will make the ripple only appear on the View's background (meaning it won't appear in front of an image, for example).
+
+`rippleEnabled` can be set to "false" (`rippleEnabled="false"`) to disable the ripple. This will also disable ripple effects on Views that have them natively (like `Button`).
+
+### Angular
+
+#### Import the NgRippleModule
 
 If you're using other modules that change the background (like https://github.com/Especializa/nativescript-ng-shadow), ensure to import it LAST, otherwise the Ripple background will be overwritten.
 
 ```	
-import { NgRippleModule } from 'nativescript-ng-ripple';
+import { NgRippleModule } from 'nativescript-ripple/angular';
 
 @NgModule({
     imports: [
@@ -41,19 +81,19 @@ import { NgRippleModule } from 'nativescript-ng-ripple';
 export class MyModule { }
 ```
 
-### Use it in the templates:
+#### Use it in the templates:
 
 **ENSURE TO BIND A TAP LISTENER, OR THIS WON'T WORK ON ANDROID**
 
 ```<Label ripple text="my label text" (tap)="tapfn()"></Label>```
 
-```
+```html
 <StackLayout ripple rippleColor="#00ff00" style="padding: 30; border-radius: 10;" (tap)="tapfn()">
 <Label text="this is inside the layout!"></Label>
 </StackLayout>
 ```
 
-### Implementation details
+#### Implementation details
 
 On Android, if the view does not have a background, we assign a transparent one. Otherwise, turning the screen off and then on again makes the background the same as the mask color (black).
 

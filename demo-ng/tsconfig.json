@@ -6,6 +6,7 @@
         "emitDecoratorMetadata": true,
         "noEmitHelpers": true,
         "noEmitOnError": true,
+        "skipLibCheck": true,
         "lib": [
             "es6",
             "dom",
@@ -18,7 +19,6 @@
                 "src/*"
             ],
             "*": [
-                "./node_modules/tns-core-modules/*",
                 "./node_modules/*"
             ]
         },
@@ -30,7 +30,7 @@
         "platforms"
     ],
     "include": [
-        "../src",
+        // "../src",
         "**/*"
     ]
 }

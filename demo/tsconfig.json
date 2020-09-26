@@ -7,21 +7,27 @@
         "noEmitHelpers": true,
         "noEmitOnError": true,
         "skipLibCheck": true,
-        "lib": ["es6", "dom", "es2017"],
+        "lib": [
+            "es6",
+            "dom",
+            "es2015.iterable",
+            "es2017"
+        ],
         "baseUrl": ".",
         "paths": {
             "~/*": [
-                "app/*"
+                "src/*"
             ],
             "*": [
                 "./node_modules/*"
             ]
-        }
+        },
+        "moduleResolution": "node",
+        "removeComments": false
     },
     "exclude": [
         "node_modules",
-        "platforms",
-        "../src/node_modules"
+        "platforms"
     ],
     "include": [
         // "../src",

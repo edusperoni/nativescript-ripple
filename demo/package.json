@@ -3,11 +3,12 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "repository": "<fill-your-repository-here>",
   "dependencies": {
-    "nativescript-ng-ripple": "file:../src",
-    "nativescript-theme-core": "~1.0.4",
-    "@nativescript/core": "~7.0.0"
+    "@nativescript/core": "~7.0.0",
+    "nativescript-ripple": "file:../dist/nativescript-ripple",
+    "nativescript-theme-core": "~1.0.4"
   },
   "devDependencies": {
+    "@nativescript/android": "7.0.0",
     "@nativescript/types": "~7.0.4",
     "@nativescript/webpack": "~3.0.0",
     "tslint": "^6.1.3",

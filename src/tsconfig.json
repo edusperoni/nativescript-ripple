@@ -20,8 +20,18 @@
         "noImplicitAny": false,
         "noImplicitReturns": true,
         "noImplicitUseStrict": false,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "outDir": "../dist/nativescript-ripple",
+        "paths": {
+            "nativescript-ripple" : [
+                "./"
+            ],
+            "nativescript-ripple/*" : [
+                "./*"
+            ]
+        }
     },
-    "exclude": ["node_modules", "demo-ng", "demo"],
-    "compileOnSave": false
+    "compileOnSave": false,
+    "exclude": ["node_modules", "**/*.spec.ts"],
+	"include": ["**/*.ts", "references.d.ts"]
 }

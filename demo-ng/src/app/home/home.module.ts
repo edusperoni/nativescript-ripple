@@ -3,7 +3,7 @@ import { NativeScriptCommonModule } from "@nativescript/angular";
 
 import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home.component";
-import { NgRippleModule } from "nativescript-ng-ripple";
+import { NgRippleModule } from "nativescript-ripple/angular";
 
 @NgModule({
     imports: [

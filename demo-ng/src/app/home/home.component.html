@@ -15,19 +15,19 @@
                     <Label text="Default Ripple" class="message" textWrap="true"></Label>
                 </StackLayout>
             </Ripple>
-            <Image ripple rippleColor="#fff000" (tap)="dummy()" src="~/app/images/batman.png" margin="10"
+            <Image ripple rippleColor="#fff000" (tap)="dummy()" src="~/assets/images/batman.png" margin="10"
                 stretch="aspectFit"></Image>
             <GridLayout columns="*,*">
                 <StackLayout col="0" ripple rippleColor="blue" [rippleColorAlpha]="1" rippleLayer="background"
                     (tap)="dummy()">
                     <Label text="This ripple is in the background layer (iOS unaffected)" textWrap="true"
                         style="text-align: center"></Label>
-                    <Image src="~/app/images/batman.png" width="50" stretch="aspectFit"></Image>
+                    <Image src="~/assets/images/batman.png" width="50" stretch="aspectFit"></Image>
                 </StackLayout>
                 <StackLayout col="1" ripple rippleColor="blue" [rippleColorAlpha]="1" (tap)="dummy()">
                     <Label text="This ripple is in the foreground layer (default)" textWrap="true"
                         style="text-align: center"></Label>
-                    <Image src="~/app/images/batman.png" width="50" stretch="aspectFit"></Image>
+                    <Image src="~/assets/images/batman.png" width="50" stretch="aspectFit"></Image>
                 </StackLayout>
             </GridLayout>
             <Label ripple text="Default Ripple" class="message" textWrap="true" (tap)="dummy()"></Label>

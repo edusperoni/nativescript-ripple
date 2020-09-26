@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { RippleHelper } from '../lib/ripple-helper';
+import { RippleHelper } from 'nativescript-ripple';
 
 @Directive({ selector: '[ripple]' })
 export class NativeRippleDirective implements OnInit, OnChanges, OnDestroy {

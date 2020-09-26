@@ -27,6 +27,7 @@
 		}
 	},
 	"angularCompilerOptions": {
+		"enableIvy": false,
 		"skipTemplateCodegen": true
 	},
 	"include": [

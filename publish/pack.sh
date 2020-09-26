@@ -2,6 +2,7 @@
 
 SOURCE_DIR=../src;
 TO_SOURCE_DIR=src;
+TO_DIST_DIR=dist/nativescript-ripple;
 PACK_DIR=package;
 ROOT_DIR=..;
 PUBLISH=--publish
@@ -12,7 +13,8 @@ install(){
 
 pack() {
 
-    echo 'Clearing /src and /package...'
+    echo 'Clearing dist /src and /package...'
+    node_modules/.bin/rimraf "$TO_DIST_DIR"
     node_modules/.bin/rimraf "$TO_SOURCE_DIR"
     node_modules/.bin/rimraf "$PACK_DIR"
 
@@ -20,15 +22,10 @@ pack() {
     echo 'Copying src...'
     node_modules/.bin/ncp "$SOURCE_DIR" "$TO_SOURCE_DIR"
 
-    # copy README & LICENSE to src
-    echo 'Copying README and LICENSE to /src...'
-    node_modules/.bin/ncp "$ROOT_DIR"/LICENSE "$TO_SOURCE_DIR"/LICENSE
-    node_modules/.bin/ncp "$ROOT_DIR"/README.md "$TO_SOURCE_DIR"/README.md
-
     # compile package and copy files required by npm
     echo 'Building /src...'
     cd "$TO_SOURCE_DIR"
-    npm run ngc
+    npm run build
     cd ..
 
     echo 'Creating package...'
@@ -37,7 +34,7 @@ pack() {
 
     # create the package
     cd "$PACK_DIR"
-    npm pack ../"$TO_SOURCE_DIR"
+    npm pack ../"$TO_DIST_DIR"
 
     # delete source directory used to create the package
     cd ..

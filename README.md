@@ -16,39 +16,41 @@ This will only work on Android Lollipop 5.0 or later and any version of iOS.
 **ENSURE TO BIND A TAP LISTENER TO THE CHILD ELEMENT, OR THIS WON'T WORK ON ANDROID**
 
 ```html
-<Page 
-  xmlns="http://schemas.nativescript.org/tns.xsd" 
-  xmlns:RL="nativescript-ripple" loaded="pageLoaded">
-  <ActionBar title="Ripples for Every Android" backgroundColor="#3489db" color="#fff" />
-  <ScrollView>
-    <StackLayout>
+<Page class="page"
+    navigatingTo="onNavigatingTo" 
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:RL="nativescript-ripple">
+    <ActionBar class="action-bar"><Label class="action-bar-title" text="Home"></Label></ActionBar>
+    <ScrollView>
+        <StackLayout>
+            <RL:Ripple rippleColor="#d50000">
+                <Label text="Red Ripples!!!" class="message" textWrap="true" tap="dummy" />
+            </RL:Ripple>
 
-      <RL:Ripple rippleColor="#d50000">
-        <Label text="Red Ripples!!!" class="message" textWrap="true" />
-      </RL:Ripple>
+            <RL:Ripple rippleColor="#fff000">
+                <Image src="~/home/images/batman.png" margin="10" stretch="aspectFit" tap="dummy"/>
+            </RL:Ripple>
 
-      <RL:Ripple rippleColor="#fff000">
-        <Image src="~/images/batman.png" margin="10" stretch="aspectFit" />
-      </RL:Ripple>
+            <RL:Ripple>
+                <Label text="Default Ripple" class="message" textWrap="true" tap="dummy"/>
+            </RL:Ripple>
 
-      <RL:Ripple>
-        <Label text="Default Ripple" class="message" textWrap="true" />
-      </RL:Ripple>
+            <RL:Ripple rippleColor="#fff">
+                <GridLayout backgroundColor="#FF4081" borderRadius="30" height="60" width="60" tap="dummy">
+                    <Label text="B" fontSize="30" color="#fff" verticalAlignment="center" horizontalAlignment="center" textWrap="true"/>
+                </GridLayout>
+            </RL:Ripple>
 
-      <RL:Ripple rippleColor="#fff" backgroundColor="#FF4081" borderRadius="30" height="60" width="60" >
-        <Label text="B" fontSize="30" color="#fff" verticalAlignment="center" horizontalAlignment="center" textWrap="true" tap="{{ tapEvent }}" />
-      </RL:Ripple>
+            <RL:Ripple rippleColor="#c8c8c8">
+                <Label class="label-button" text="Lighter Ripple" textWrap="true" tap="dummy"/>
+            </RL:Ripple>
 
-      <RL:Ripple  rippleColor="#c8c8c8" class="label-button">
-        <Label text="Lighter Ripple" textWrap="true" tap="{{ tapEvent }}" />
-      </RL:Ripple>
+            <RL:Ripple rippleColor="#f5f5f5">
+                <Label text="Possibilities" color="#fff" padding="10" textWrap="true" tap="tapEvent" class="dark-button"/>
+            </RL:Ripple>
 
-      <RL:Ripple rippleColor="#f5f5f5" margin="15" tap="{{ tapEvent }}" class="dark-button">
-        <Label text="Possibilities" color="#fff" padding="10" textWrap="true" tap="{{ tapEvent }}" />
-      </RL:Ripple>
- 
-    </StackLayout>
-  </ScrollView>
+        </StackLayout>
+    </ScrollView>
 </Page>
 ```
 

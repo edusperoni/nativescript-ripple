@@ -9,7 +9,7 @@ matrix:
       os: osx
       env:
         - WebPack="iOS"
-      osx_image: xcode10.2
+      osx_image: xcode11.7
       language: node_js 
       node_js: "10"
       jdk: oraclejdk8
@@ -33,6 +33,8 @@ android:
     - android-23
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-21
+licenses:
+    - 'android-sdk-license-.+'
 
 install:
     - echo no | npm install -g nativescript

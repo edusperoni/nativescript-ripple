@@ -27,6 +27,7 @@
         "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
         "ngc": "./node_modules/.bin/ngc --p tsconfig.ngc.json",
         "ngpackagr": "ng-packagr --project ./angular/package.json --config ./angular/tsconfig.angular.json",
+        "link-demos": "cd ../scripts && npm i && node ./link-demo-dev.js",
         "copy-dts": "copyfiles -e \"./node_modules/**\" -e \"./angular/**\" \"./**/*.d.ts\"  ../dist/nativescript-ripple",
         "copy-dist": "npm run copy-dts && copyfiles -f package.json ../README.md ../LICENSE ../dist/nativescript-ripple"
     },

@@ -30,7 +30,7 @@
         "platforms"
     ],
     "include": [
-        // "../src",
+        "../src",
         "**/*"
     ]
 }

@@ -29,7 +29,7 @@
         "ngpackagr": "ng-packagr --project ./angular/package.json --config ./angular/tsconfig.angular.json",
         "link-demos": "cd ../scripts && npm i && node ./link-demo-dev.js",
         "copy-dts": "copyfiles -e \"./node_modules/**\" -e \"./angular/**\" \"./**/*.d.ts\"  ../dist/nativescript-ripple",
-        "copy-dist": "npm run copy-dts && copyfiles -f package.json ../README.md ../LICENSE ../dist/nativescript-ripple"
+        "copy-dist": "npm run copy-dts && copyfiles -f .npmignore package.json ../README.md ../LICENSE ../dist/nativescript-ripple"
     },
     "keywords": [
         "NativeScript",
@@ -45,10 +45,10 @@
         "email": "eduardosperoni@ufsm.br"
     },
     "bugs": {
-        "url": "https://github.com/edusperoni/nativescript-ng-ripple/issues"
+        "url": "https://github.com/edusperoni/nativescript-ripple/issues"
     },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/edusperoni/nativescript-ng-ripple",
+    "homepage": "https://github.com/edusperoni/nativescript-ripple",
     "readmeFilename": "README.md",
     "devDependencies": {
         "@angular/animations": "~10.0.12",
